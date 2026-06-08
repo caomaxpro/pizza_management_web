@@ -1,7 +1,8 @@
 services:
-  - type: web_service
+  - type: service
     name: pizza-admin-backend
-    runtime: python-3.11
+    env: python
+    plan: standard
     buildCommand: |
       pip install -r backend/requirements.txt && \
       cd backend/backend_dj && \
@@ -10,32 +11,27 @@ services:
     startCommand: |
       cd backend/backend_dj && \
       gunicorn backend_dj.wsgi:application \
-        --bind 0.0.0.0:${PORT} \
+        --bind 0.0.0.0:$PORT \
         --workers 2 \
         --worker-class sync \
         --timeout 60
-    plan: standard
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: backend_dj.settings
       - key: ALLOWED_HOSTS
-        value: ${render.io},*.onrender.com
-      - key: CORS_ALLOWED_ORIGINS
-        value: https://${frontend.onrender.com}
-      - key: CSRF_TRUSTED_ORIGINS
-        value: https://${frontend.onrender.com}
+        value: "*.onrender.com"
       - key: DEBUG
-        value: false
+        value: "false"
       - key: SECURE_SSL_REDIRECT
-        value: true
+        value: "true"
       - key: SESSION_COOKIE_SECURE
-        value: true
+        value: "true"
       - key: CSRF_COOKIE_SECURE
-        value: true
+        value: "true"
       - key: SECURE_HSTS_SECONDS
-        value: 31536000
+        value: "31536000"
       - key: SECURE_HSTS_INCLUDE_SUBDOMAINS
-        value: true
+        value: "true"
       - key: DATABASE_URL
         fromDatabase:
           name: pizza-admin-db
@@ -43,36 +39,28 @@ services:
       - key: REDIS_URL
         fromService:
           name: pizza-admin-redis
-          type: redis
+          type: pserv
           property: connectionString
       - key: SECRET_KEY
         generateValue: true
       - key: FIREBASE_CONFIG_PATH
         value: /etc/secrets/firebase_config.json
     healthCheckPath: /api/health/
-    healthCheckStartupFailureThresholdSeconds: 300
-    routes:
-      - path: /api
-        destination: /api
-      - path: /admin
-        destination: /admin
-      - path: /static
-        destination: /static
 
-  - type: background_worker
+  - type: service
     name: pizza-admin-worker
-    runtime: python-3.11
+    env: python
+    plan: standard
     buildCommand: |
       pip install -r backend/requirements.txt
     startCommand: |
       cd backend/backend_dj && \
       celery -A backend_dj worker -l info --concurrency=2
-    plan: standard
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: backend_dj.settings
       - key: DEBUG
-        value: false
+        value: "false"
       - key: DATABASE_URL
         fromDatabase:
           name: pizza-admin-db
@@ -80,7 +68,7 @@ services:
       - key: REDIS_URL
         fromService:
           name: pizza-admin-redis
-          type: redis
+          type: pserv
           property: connectionString
       - key: SECRET_KEY
         generateValue: true
@@ -89,15 +77,16 @@ services:
 
 databases:
   - name: pizza-admin-db
+    engine: postgres
+    version: 15
+    plan: free
     databaseName: pizza_admin
     databaseUser: postgres
-    ipAllowList: []
-    plan: free
-    postgresMajorVersion: 15
-    presetPlan: free
 
-caches:
+services:
   - name: pizza-admin-redis
-    ipAllowList: []
+    engine: redis
+    version: 7
     plan: free
+    ipAllowList: []
     maxmemoryPolicy: noeviction
