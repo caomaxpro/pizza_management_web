@@ -83,7 +83,7 @@ databases:
     databaseName: pizza_admin
     databaseUser: postgres
 
-services:
+caches:
   - name: pizza-admin-redis
     engine: redis
     version: 7
