@@ -88,8 +88,7 @@ services:
 
 databases:
   - name: pizza-admin-db
-    engine: postgres
-    version: "15"
+    postgresMajorVersion: "15"
     region: oregon
     plan: free
     databaseName: pizza_admin
