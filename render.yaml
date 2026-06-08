@@ -1,0 +1,122 @@
+services:
+  - type: static_site
+    name: pizza-admin-frontend
+    buildCommand: |
+      cd web_frontend && npm install && npm run build
+    staticPublishPath: web_frontend/dist
+    routes:
+      - path: /
+        destination: /index.html
+      - path: /assets
+        destination: /assets
+    envVars:
+      - key: VITE_API_URL
+          scope: build
+          value: ${web.url}/api
+      - key: VITE_API_DOMAIN
+          scope: build
+          value: ${web.url}
+    pullRequestPreviewsEnabled: true
+
+  - type: web_service
+    name: pizza-admin-backend
+    runtime: python-3.11
+    buildCommand: |
+      pip install -r backend/requirements.txt && \
+      cd backend/backend_dj && \
+      python manage.py migrate && \
+      python manage.py collectstatic --noinput
+    startCommand: |
+      cd backend/backend_dj && \
+      gunicorn backend_dj.wsgi:application \
+        --bind 0.0.0.0:${PORT} \
+        --workers 2 \
+        --worker-class sync \
+        --timeout 60
+    plan: standard
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: backend_dj.settings
+      - key: ALLOWED_HOSTS
+        value: ${render.io},*.onrender.com
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://${frontend.onrender.com}
+      - key: CSRF_TRUSTED_ORIGINS
+        value: https://${frontend.onrender.com}
+      - key: DEBUG
+        value: false
+      - key: SECURE_SSL_REDIRECT
+        value: true
+      - key: SESSION_COOKIE_SECURE
+        value: true
+      - key: CSRF_COOKIE_SECURE
+        value: true
+      - key: SECURE_HSTS_SECONDS
+        value: 31536000
+      - key: SECURE_HSTS_INCLUDE_SUBDOMAINS
+        value: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: pizza-admin-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: pizza-admin-redis
+          type: redis
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FIREBASE_CONFIG_PATH
+        value: /etc/secrets/firebase_config.json
+    healthCheckPath: /api/health/
+    healthCheckStartupFailureThresholdSeconds: 300
+    routes:
+      - path: /api
+        destination: /api
+      - path: /admin
+        destination: /admin
+      - path: /static
+        destination: /static
+
+  - type: background_worker
+    name: pizza-admin-worker
+    runtime: python-3.11
+    buildCommand: |
+      pip install -r backend/requirements.txt
+    startCommand: |
+      cd backend/backend_dj && \
+      celery -A backend_dj worker -l info --concurrency=2
+    plan: standard
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: backend_dj.settings
+      - key: DEBUG
+        value: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: pizza-admin-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: pizza-admin-redis
+          type: redis
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FIREBASE_CONFIG_PATH
+        value: /etc/secrets/firebase_config.json
+
+databases:
+  - name: pizza-admin-db
+    databaseName: pizza_admin
+    databaseUser: postgres
+    ipAllowList: []
+    plan: free
+    postgresMajorVersion: 15
+    presetPlan: free
+
+caches:
+  - name: pizza-admin-redis
+    ipAllowList: []
+    plan: free
+    maxmemoryPolicy: noeviction
