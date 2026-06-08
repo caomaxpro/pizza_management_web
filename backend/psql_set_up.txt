@@ -1,0 +1,342 @@
+Được — mình sẽ tạo file `SETUP.md` tổng hợp các bước setup DB và kết nối: 
+
+Read [](file:///home/cao-le/Flutter%20Projects/pizza_ordering_app)
+
+Mình sẽ tạo file `SETUP.md` ở root project với tổng hợp các bước:
+
+```markdown
+# Backend Setup & Database Connection Guide
+
+Hướng dẫn chi tiết setup Django backend với PostgreSQL (Cloud SQL) qua Docker proxy, Firebase Storage, và image optimization.
+
+---
+
+## Phần 1: Chuẩn bị môi trường
+
+### 1.1 Cài PostgreSQL Client 17
+
+```bash
+# Thêm repo PostgreSQL chính thức
+sudo mkdir -p /usr/share/keyrings
+wget -qO - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo gpg --dearmor -o /usr/share/keyrings/postgresql-archive-keyring.gpg
+
+echo "deb [signed-by=/usr/share/keyrings/postgresql-archive-keyring.gpg] http://apt.postgresql.org/pub/repos/apt noble-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
+
+sudo apt update
+sudo apt install postgresql-client-17
+```
+
+Kiểm tra:
+```bash
+psql --version
+```
+
+### 1.2 Tạo Virtual Environment (nếu chưa có)
+
+```bash
+cd backend
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+### 1.3 Cài Python Dependencies
+
+```bash
+pip install --upgrade pip
+pip install -r requirements.txt
+# Hoặc install từng package cần thiết
+pip install django djangorestframework pydantic python-dotenv psycopg2-binary
+pip install firebase-admin google-cloud-storage pillow
+```
+
+---
+
+## Phần 2: Chạy Cloud SQL Proxy (Docker)
+
+### 2.1 Chuẩn bị Service Account Key
+
+- Đảm bảo file service account JSON tồn tại: cao-pizza-firebase-adminsdk-fbsvc-8a1650077e.json
+- Gán IAM roles cho service account (gcloud CLI):
+  - `cloudsql.client` (Cloud SQL Client)
+  - `editor` hoặc `storage.admin` (nếu dùng Firebase Storage)
+
+### 2.2 Khởi động Cloud SQL Proxy Container
+
+```bash
+# Xác định Cloud SQL instance connection string:
+# Format: project-id:region:instance-name
+# Ví dụ: cao-pizza:us-central1:postgres-db
+
+docker run -d \
+  --name cloudsql-proxy \
+  -p 5432:5432 \
+  gcr.io/cloudsql-docker/gce-proxy:latest \
+  /cloud_sql_proxy \
+  -instances=cao-pizza:us-central1:postgres-db=tcp:0.0.0.0:5432 \
+  -credential_file=/config/key.json \
+  -use_dns=false \
+  -ip=0.0.0.0
+```
+
+Kiểm tra trạng thái:
+```bash
+docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Ports}}"
+docker logs cloudsql-proxy --tail 50
+```
+
+Kết quả mong đợi: "Listening on 0.0.0.0:5432" hoặc "Ready for new connections"
+
+### 2.3 Cấu hình Database User Password (gcloud CLI)
+
+```bash
+gcloud sql users set-password postgres \
+  --instance=postgres-db \
+  --password=Titeuf1234
+```
+
+---
+
+## Phần 3: Tạo Database & Schema
+
+### 3.1 Kết nối PostgreSQL (dùng psql từ Docker hoặc local)
+
+```bash
+# Option A: psql local (nếu cài client 17)
+psql -h 127.0.0.1 -U postgres -d postgres
+
+# Option B: Docker psql
+docker run --rm -it --network host -e PGPASSWORD=Titeuf1234 postgres:17 \
+  psql -h 127.0.0.1 -U postgres -d postgres
+```
+
+### 3.2 Tạo Database (trong psql prompt)
+
+```sql
+CREATE DATABASE pizza_ordering_db;
+\l  -- Verify
+\q  -- Exit
+```
+
+---
+
+## Phần 4: Cấu hình Django & Environment
+
+### 4.1 Cập nhật .env
+
+```bash
+# backend/backend_dj/.env
+DB_ENGINE=django.db.backends.postgresql
+DB_NAME=pizza_ordering_db
+DB_USER=postgres
+DB_PASSWORD=Titeuf1234
+DB_HOST=127.0.0.1
+DB_PORT=5432
+
+DISABLE_FIREBASE=0
+FIREBASE_CREDENTIALS_PATH=/home/cao-le/Flutter\ Projects/pizza_ordering_app/backend/cao-pizza-firebase-adminsdk-fbsvc-8a1650077e.json
+FIREBASE_STORAGE_BUCKET=cao-pizza.firebasestorage.app
+
+DJANGO_SECRET_KEY="django-insecure-..."
+DEBUG=True
+ALLOWED_HOSTS=127.0.0.1,localhost
+```
+
+**Lưu ý:** Nếu path có space, dùng `\` hoặc quotes trong shell.
+
+### 4.2 Chạy Migrations
+
+```bash
+cd backend/backend_dj
+python manage.py makemigrations
+python manage.py migrate
+```
+
+Kiểm tra schema đã tạo:
+```bash
+python manage.py dbshell  # Vào psql prompt
+# Hoặc query từ bên ngoài:
+docker run --rm -it --network host -e PGPASSWORD=Titeuf1234 postgres:17 \
+  psql -h 127.0.0.1 -U postgres -d pizza_ordering_db -c \
+  "SELECT table_name FROM information_schema.tables WHERE table_schema='public';"
+```
+
+---
+
+## Phần 5: Firebase Storage Setup
+
+### 5.1 Kiểm tra kết nối Firebase
+
+```bash
+# File test có sẵn:
+python backend/test_firebase_storage.py
+```
+
+Kết quả mong đợi:
+```
+KEY_PATH exists? True
+Firebase app initialized: ...
+Bucket name: cao-pizza.firebasestorage.app
+Uploading blob: tests/test_upload_...
+Upload succeeded (no exception).
+Downloaded content: firebase storage test
+Deleted blob.
+```
+
+### 5.2 Tối ưu Ảnh trước Upload (Optional)
+
+Dùng `ImageOptimizer` từ `pizza_management/helper/image_helper.py`:
+
+```python
+from pizza_management.helper.image_helper import ImageOptimizer
+
+image_bytes = request.FILES['image'].read()
+
+# Complete pipeline
+result = ImageOptimizer.process_image_complete(
+    image_bytes,
+    max_width=1920,
+    quality=80,
+    output_format="webp",
+    create_thumb=True
+)
+
+if result["is_valid"]:
+    # Upload optimized image
+    blob.upload_from_string(
+        result["optimized_bytes"],
+        content_type=result["optimized_type"]
+    )
+```
+
+---
+
+## Phần 6: Chạy Django Development Server
+
+```bash
+cd backend/backend_dj
+python manage.py runserver 0.0.0.0:8000
+```
+
+Truy cập: http://localhost:8000/admin
+
+---
+
+## Phần 7: Kiểm tra & Validate
+
+### 7.1 Django ORM Check
+
+```bash
+python backend/backend_dj/manage.py shell
+
+# Trong shell:
+from pizza_management.models import Item
+Item.objects.count()  # Xem số lượng items
+```
+
+### 7.2 pgAdmin (GUI)
+
+1. Mở pgAdmin → "Let's connect to the server"
+2. Nhập:
+   - **Server Name**: pizza-db
+   - **Host**: 127.0.0.1
+   - **Port**: 5432
+   - **Username**: postgres
+   - **Password**: Titeuf1234
+3. Kết nối → Browse Servers → pizza-db → Databases → pizza_ordering_db
+
+### 7.3 Kiểm tra Migrations Status
+
+```bash
+python manage.py showmigrations
+```
+
+---
+
+## Troubleshooting
+
+### Connection refused (port 5432)
+
+```bash
+# Kiểm tra proxy chạy chưa
+docker ps | grep cloudsql-proxy
+
+# Nếu chưa, start lại:
+docker start cloudsql-proxy
+
+# Hoặc check logs:
+docker logs cloudsql-proxy
+```
+
+### Permission denied / 403
+
+- Đảm bảo service account có role `Cloud SQL Client`.
+- Ngược lại nếu dùng Firebase Storage, thêm role `Storage Admin`.
+
+```bash
+gcloud projects add-iam-policy-binding cao-pizza \
+  --member=serviceAccount:SERVICE_ACCOUNT_EMAIL \
+  --role=roles/cloudsql.client
+```
+
+### ModuleNotFoundError (import)
+
+```bash
+# Chắc chắn virtualenv active
+source .venv/bin/activate
+pip list  # Kiểm tra packages
+```
+
+### Database does not exist
+
+- Chắc chắn đã tạo database `pizza_ordering_db`.
+- Kiểm tra .env có giá trị `DB_NAME=pizza_ordering_db`.
+
+```sql
+-- Trong psql
+SELECT datname FROM pg_database WHERE datname='pizza_ordering_db';
+```
+
+---
+
+## Reference
+
+- **Django Settings**: `backend/backend_dj/settings.py`
+- **Models**: models.py
+- **Firebase Service**: firebase_service.py
+- **Image Helper**: image_helper.py
+- **Environment**: .env
+
+---
+
+## Tóm tắt lệnh nhanh
+
+```bash
+# Activate venv
+source backend/.venv/bin/activate
+
+# Start proxy
+docker start cloudsql-proxy
+
+# Migrations
+cd backend/backend_dj && python manage.py migrate
+
+# Run server
+python backend/backend_dj/manage.py runserver
+
+# Django shell
+python backend/backend_dj/manage.py shell
+
+# Test Firebase
+python backend/test_firebase_storage.py
+```
+
+---
+
+**Last Updated**: April 2, 2026
+```
+
+---
+
+Mình sẽ tạo file này vào root project:---
+
+Mình sẽ tạo file này vào root project:

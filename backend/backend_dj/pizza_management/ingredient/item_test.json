@@ -1,0 +1,70 @@
+[
+  {
+    "id": 1,
+    "name": "Pepperoni",
+    "description": "Classic spicy pepperoni slices.",
+    "type": "topping",
+    "sub_type": "meat",
+    "price": 1.5,
+    "image_url": "assets/images/topping/meat/pepperoni.png",
+    "piece_image_url": "assets/images/piece/meat/pepperoni.png"
+  },
+  {
+    "id": 2,
+    "name": "Mushroom",
+    "description": "Freshly sliced mushrooms.",
+    "type": "topping",
+    "sub_type": "veggie",
+    "price": 1.0,
+    "image_url": "assets/images/topping/veggie/mushroom.png",
+    "piece_image_url": "assets/images/piece/veggie/mushroom.png"
+  },
+  {
+    "id": 3,
+    "name": "Mozzarella Cheese",
+    "description": "Rich mozzarella cheese.",
+    "type": "cheese",
+    "price": 1.2,
+    "image_url": "assets/images/topping/cheese/mozzarella.png"
+  },
+  {
+    "id": 4,
+    "name": "Bacon Crumble",
+    "description": "Crispy bacon bits.",
+    "type": "topping",
+    "sub_type": "meat",
+    "price": 1.7,
+    "image_url": "assets/images/topping/meat/bacon_crumble.png",
+    "piece_image_url": "assets/images/piece/meat/bacon_crumble.png"
+  },
+  {
+    "id": 5,
+    "name": "Green Pepper",
+    "description": "Sliced green bell peppers.",
+    "type": "topping",
+    "sub_type": "veggie",
+    "price": 0.9,
+    "image_url": "assets/images/topping/veggie/green_peppers.png",
+    "piece_image_url": "assets/images/piece/veggie/green_pepper.png"
+  },
+  {
+    "id": 7,
+    "name": "Kalamata Olives",
+    "description": "Sliced black olives.",
+    "type": "topping",
+    "sub_type": "veggie",
+    "price": 1.0,
+    "image_url": "assets/images/topping/veggie/kalamata_olives.png",
+    "piece_image_url": "assets/images/piece/veggie/kalamata_olive.png"
+  },
+  {
+    "id": 8,
+    "name": "Pineapple",
+    "description": "Juicy pineapple chunks.",
+    "type": "topping",
+    "sub_type": "veggie",
+    "price": 1.3,
+    "image_url": "assets/images/topping/veggie/pineapple.png",
+    "piece_image_url": "assets/images/piece/veggie/pineapple.png"
+  }
+]

@@ -1,0 +1,230 @@
+.timeline {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 24px;
+    
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+        
+        h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: #111827;
+        }
+        
+        .phaseCount {
+            background: #e5e7eb;
+            color: #374151;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+    }
+    
+    .phases {
+        position: relative;
+    }
+}
+
+.timelineItem {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 32px;
+    position: relative;
+    
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.leftSide {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.dot {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    z-index: 1;
+    background: #3b82f6 !important;
+    flex-shrink: 0;
+}
+
+.connector {
+    width: 3px;
+    flex: 1;
+    min-height: 24px;
+    margin-top: 8px;
+    background: #d1d5db;
+}
+
+.rightSide {
+    flex: 1;
+    padding-top: 4px;
+}
+
+.content {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 16px;
+    
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+    
+    .status {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 600;
+        color: #111827;
+    }
+    
+    .timestamp {
+        font-size: 12px;
+        color: #6b7280;
+        white-space: nowrap;
+        font-family: 'Monaco', 'Menlo', monospace;
+    }
+    
+    .reason {
+        margin: 0 0 12px 0;
+        font-size: 14px;
+        color: #374151;
+        line-height: 1.5;
+    }
+    
+    .metadata {
+        background: #f3f4f6;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        padding: 12px;
+        
+        .metadataEntry {
+            display: flex;
+            gap: 8px;
+            font-size: 12px;
+            margin-bottom: 8px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            
+            &:last-child {
+                margin-bottom: 0;
+            }
+            
+            .metadataKey {
+                color: #6366f1;
+                font-weight: 600;
+                min-width: 100px;
+            }
+            
+            .metadataValue {
+                color: #374151;
+                word-break: break-word;
+            }
+        }
+    }
+}
+
+.currentBadge {
+    display: inline-block;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.emptyState {
+    background: #f3f4f6;
+    border: 2px dashed #d1d5db;
+    border-radius: 8px;
+    padding: 32px;
+    text-align: center;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+// Compact timeline variant
+.compactTimeline {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    
+    .compactItem {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 8px;
+        border-radius: 6px;
+        background: white;
+        border: 1px solid #e5e7eb;
+        position: relative;
+    }
+    
+    .compactDot {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+    
+    .compactContent {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .compactStatus {
+        font-size: 13px;
+        font-weight: 600;
+        color: #111827;
+    }
+    
+    .compactTime {
+        font-size: 11px;
+        color: #6b7280;
+        font-family: 'Monaco', 'Menlo', monospace;
+    }
+    
+    .compactReason {
+        font-size: 12px;
+        color: #374151;
+    }
+    
+    .compactConnector {
+        position: absolute;
+        left: 11px;
+        top: 32px;
+        width: 2px;
+        height: 12px;
+        background: #d1d5db;
+    }
+}

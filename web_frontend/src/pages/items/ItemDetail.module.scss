@@ -1,0 +1,202 @@
+// Copied from IngredientDetail.module.scss for visual consistency
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+
+    h1 {
+        margin: 0;
+        font-size: 2rem;
+        color: #333;
+    }
+}
+
+.backBtn {
+    padding: 0.75rem 1.5rem;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background-color: #e0e0e0;
+        border-color: #999;
+    }
+}
+
+.detailCard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+.imageSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    overflow: hidden;
+    min-height: 300px;
+
+    .detailImage {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        max-width: 100%;
+        max-height: 500px;
+    }
+
+    .noImage {
+        font-size: 1.2rem;
+        color: #999;
+        text-align: center;
+        padding: 2rem;
+    }
+}
+
+.infoSection {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.titleGroup {
+    h2 {
+        margin: 0;
+        font-size: 1.8rem;
+        color: #333;
+    }
+
+    .subType {
+        margin-top: 0.5rem;
+        padding: 0.25rem 0.75rem;
+        background-color: #f0f0f0;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        color: #666;
+        display: inline-block;
+    }
+}
+
+.statusGroup {
+    display: flex;
+    gap: 1rem;
+
+    .badgeActive {
+        padding: 0.5rem 1rem;
+        background-color: #d4edda;
+        color: #155724;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .badgeInactive {
+        padding: 0.5rem 1rem;
+        background-color: #f8d7da;
+        color: #721c24;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+}
+
+.detailsGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.detailItem {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    border-left: 4px solid #ff7043;
+
+    .label {
+        font-weight: 600;
+        color: #555;
+    }
+
+    .value {
+        color: #333;
+        word-break: break-word;
+    }
+}
+
+.loading {
+    text-align: center;
+    padding: 4rem 2rem;
+    font-size: 1.2rem;
+    color: #999;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+
+    .editBtn {
+        flex: 1;
+        padding: 0.75rem 1.5rem;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: #45a049;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+        }
+    }
+
+    .backBtn {
+        flex: 1;
+        padding: 0.75rem 1.5rem;
+        background-color: #f0f0f0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: #e0e0e0;
+        }
+    }
+}

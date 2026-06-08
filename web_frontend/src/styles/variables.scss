@@ -1,0 +1,201 @@
+// === COLOR PALETTE ===
+$primary: #667eea;
+$primary-dark: #764ba2;
+$primary-light: #f0f4ff;
+
+$secondary: #764ba2;
+$success: #10b981;
+$warning: #f59e0b;
+$error: #ef4444;
+$info: #3b82f6;
+
+$dark: #1f2937;
+$dark-light: #374151;
+$gray: #6b7280;
+$gray-light: #d1d5db;
+$gray-lighter: #e5e7eb;
+$gray-lightest: #f3f4f6;
+
+$background: #f5f5f5;
+$surface: #ffffff;
+$border: #e5e7eb;
+$border-focus: #616161;
+$text: #1f2937;
+$text-primary: #1f2937;
+$text-secondary: #6b7280;
+$bg-light: #f3f4f6;
+$border-light: #e5e7eb;
+
+// === GRADIENTS ===
+$gradient-primary: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+$gradient-dark: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+// === SPACING ===
+$space-0: 0;
+$space-1: 0.25rem;
+$space-2: 0.5rem;
+$space-3: 0.75rem;
+$space-4: 1rem;
+$space-5: 1.25rem;
+$space-6: 1.5rem;
+$space-8: 2rem;
+$space-10: 2.5rem;
+$space-12: 3rem;
+$space-16: 4rem;
+$space-20: 5rem;
+
+// === BORDER RADIUS ===
+$radius-sm: 4px;
+$radius-md: 6px;
+$radius-lg: 8px;
+$radius-xl: 12px;
+$radius-full: 9999px;
+
+// === FONT SIZES ===
+$text-xs: 0.75rem;
+$text-sm: 0.875rem;
+$text-base: 1rem;
+$text-lg: 1.125rem;
+$text-xl: 1.25rem;
+$text-2xl: 1.5rem;
+$text-3xl: 1.875rem;
+$text-4xl: 2.25rem;
+
+// === FONT WEIGHT ===
+$weight-normal: 400;
+$weight-medium: 500;
+$weight-semibold: 600;
+$weight-bold: 700;
+
+// === SHADOWS ===
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+// === TRANSITIONS ===
+$transition-fast: 150ms ease-in-out;
+$transition-base: 250ms ease-in-out;
+$transition-slow: 350ms ease-in-out;
+
+// === BREAKPOINTS ===
+$bp-sm: 640px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+
+// === HEADER ===
+$header-height: 64px;
+$header-mobile-height: 56px;
+
+// === SIDEBAR ===
+$sidebar-width: 250px;
+$sidebar-width-mobile: 60px;
+
+// === MIXINS ===
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin scrollbar {
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    // padding: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    // padding: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $gray-light;
+    border-radius: $radius-sm;
+    transition: background $transition-fast;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: $gray;
+    background-clip: padding-box;
+}
+
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
+}
+
+@mixin card {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: $radius-lg;
+  box-shadow: $shadow;
+  transition: all $transition-base;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}
+
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-2 $space-4;
+  border: none;
+  border-radius: $radius-md;
+  font-size: $text-sm;
+  font-weight: $weight-medium;
+  cursor: pointer;
+  transition: all $transition-fast;
+  text-decoration: none;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+@mixin input-base {
+  width: 100%;
+  padding: $space-2 $space-3;
+  border: 1px solid $border;
+  border-radius: $radius-md;
+  font-size: $text-sm;
+  font-family: inherit;
+  transition: all $transition-fast;
+
+  &:focus {
+    outline: none;
+    border-color: $primary;
+    box-shadow: 0 0 0 3px rgba($primary, 0.1);
+  }
+
+  &:disabled {
+    background-color: $gray-lightest;
+    cursor: not-allowed;
+  }
+}
+
+@mixin responsive-grid($columns) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($columns, 1fr));
+  gap: $space-4;
+}

@@ -1,0 +1,444 @@
+@use '../../styles/variables' as vars;
+
+.container {
+  padding: vars.$space-6;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: vars.$space-8;
+
+  h1 {
+    font-size: 2.5rem;
+    color: vars.$text;
+    margin-bottom: vars.$space-2;
+  }
+
+  .subtitle {
+    font-size: vars.$text-lg;
+    color: vars.$text-secondary;
+  }
+}
+
+.content {
+  background: vars.$surface;
+  border: 1px solid vars.$border;
+  border-radius: vars.$radius-lg;
+  padding: vars.$space-6;
+  color: vars.$text-secondary;
+  text-align: center;
+
+  p {
+    margin: 0;
+  }
+}
+
+.tableWrapper {
+  background: white;
+  border-radius: vars.$space-2;
+  overflow-x: auto;
+  @include vars.card;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    background: vars.$bg-light;
+    border-bottom: 2px solid vars.$border-light;
+
+    th {
+      padding: vars.$space-3 vars.$space-4;
+      text-align: left;
+      font-weight: 600;
+      color: vars.$text-primary;
+      font-size: vars.$text-sm;
+      white-space: nowrap;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid vars.$border-light;
+      transition: background vars.$transition-base;
+      background: white;
+
+      &:nth-child(even) {
+        background: #f8f9fa;
+      }
+
+      &:hover {
+        background: rgba(vars.$primary, 0.04);
+      }
+
+      td {
+        padding: vars.$space-3 vars.$space-4;
+        font-size: vars.$text-sm;
+        color: vars.$text-primary;
+
+        &:last-child {
+          text-align: right;
+        }
+      }
+    }
+  }
+}
+
+.adminBadge {
+  display: inline-block;
+  background: rgba(vars.$primary, 0.1);
+  color: vars.$primary;
+  padding: vars.$space-1 vars.$space-2;
+  border-radius: vars.$space-1;
+  font-size: vars.$text-xs;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.staffBadge {
+  display: inline-block;
+  background: rgba(vars.$info, 0.1);
+  color: vars.$info;
+  padding: vars.$space-1 vars.$space-2;
+  border-radius: vars.$space-1;
+  font-size: vars.$text-xs;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.activeBadge {
+  display: inline-block;
+  background: rgba(vars.$success, 0.1);
+  color: vars.$success;
+  padding: vars.$space-1 vars.$space-2;
+  border-radius: vars.$space-1;
+  font-size: vars.$text-xs;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.inactiveBadge {
+  display: inline-block;
+  background: rgba(vars.$text-secondary, 0.1);
+  color: vars.$text-secondary;
+  padding: vars.$space-1 vars.$space-2;
+  border-radius: vars.$space-1;
+  font-size: vars.$text-xs;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.actions {
+  display: flex;
+  gap: vars.$space-2;
+  justify-content: flex-end;
+}
+
+.viewBtn,
+.editBtn,
+.deleteBtn,
+.assignBtn {
+  @include vars.button-base;
+  background: white;
+  border: 1px solid vars.$border-light;
+  padding: vars.$space-1 vars.$space-2;
+  font-size: vars.$text-sm;
+  cursor: pointer;
+  border-radius: vars.$space-1;
+  transition: all vars.$transition-base;
+
+  &:hover {
+    background: vars.$bg-light;
+    border-color: vars.$primary;
+  }
+}
+
+.viewBtn {
+  &:hover {
+    background: rgba(vars.$info, 0.1);
+    border-color: vars.$info;
+  }
+}
+
+.deleteBtn {
+  &:hover {
+    background: rgba(vars.$error, 0.1);
+    border-color: vars.$error;
+  }
+}
+
+.loading {
+  text-align: center;
+  padding: vars.$space-8;
+  color: vars.$text-secondary;
+  font-size: vars.$text-lg;
+}
+
+.error {
+  background: rgba(vars.$error, 0.1);
+  border-left: 4px solid vars.$error;
+  color: vars.$error;
+  padding: vars.$space-3 vars.$space-4;
+  border-radius: vars.$space-1;
+  margin-bottom: vars.$space-4;
+}
+
+// ── Tab navigation ──
+.tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid vars.$border;
+  margin-bottom: vars.$space-6;
+}
+
+.tab {
+  padding: vars.$space-3 vars.$space-5;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: vars.$text-sm;
+  font-weight: 500;
+  color: vars.$text-secondary;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: color vars.$transition-fast, border-color vars.$transition-fast;
+
+  &:hover {
+    color: vars.$text;
+  }
+}
+
+.tabActive {
+  color: vars.$primary;
+  border-bottom-color: vars.$primary;
+}
+
+// ── Extra role badges ──
+.managerBadge {
+  display: inline-block;
+  background: rgba(167, 139, 250, 0.15);
+  color: #7c3aed;
+  padding: vars.$space-1 vars.$space-2;
+  border-radius: vars.$space-1;
+  font-size: vars.$text-xs;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.userBadge {
+  display: inline-block;
+  background: rgba(vars.$text-secondary, 0.12);
+  color: vars.$text-secondary;
+  padding: vars.$space-1 vars.$space-2;
+  border-radius: vars.$space-1;
+  font-size: vars.$text-xs;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+// ── List tab header (New User button row) ──
+.listHeader {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: vars.$space-4;
+  margin-bottom: vars.$space-4;
+
+  // error inside listHeader sits left of the button
+  .error {
+    flex: 1;
+    margin-bottom: 0;
+  }
+}
+
+// ── Modal Styles ──
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+.modalContent {
+  background: white;
+  border-radius: vars.$radius-lg;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp 0.3s ease-out;
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: vars.$space-6;
+  border-bottom: 1px solid vars.$border;
+  position: sticky;
+  top: 0;
+  background: white;
+}
+
+.modalTitle {
+  font-size: vars.$text-lg;
+  font-weight: 600;
+  color: vars.$text;
+  margin: 0;
+}
+
+.modalClose {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: vars.$text-secondary;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: vars.$radius-sm;
+  transition: background-color vars.$transition-fast,
+    color vars.$transition-fast;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: vars.$text;
+  }
+}
+
+.modalBody {
+  padding: vars.$space-6;
+}
+
+// ── Bulk Actions ──
+.bulkActions {
+  display: flex;
+  gap: vars.$space-3;
+  align-items: center;
+  background: rgba(vars.$primary, 0.05);
+  border: 1px solid rgba(vars.$primary, 0.2);
+  padding: vars.$space-3 vars.$space-4;
+  border-radius: vars.$space-1;
+  margin-bottom: vars.$space-4;
+
+  span {
+    font-weight: 500;
+    color: vars.$primary;
+    flex: 1;
+  }
+}
+
+// ── Assign Button ──
+.assignBtn {
+  @include vars.button-base;
+  background: white;
+  border: 1px solid vars.$border-light;
+  padding: vars.$space-1 vars.$space-2;
+  font-size: vars.$text-sm;
+  cursor: pointer;
+  border-radius: vars.$space-1;
+  transition: all vars.$transition-base;
+
+  &:hover {
+    background: rgba(vars.$primary, 0.1);
+    border-color: vars.$primary;
+    color: vars.$primary;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// ── Assign Task Modal ──
+.taskCheckboxList {
+  display: flex;
+  flex-direction: column;
+  gap: vars.$space-3;
+  margin-bottom: vars.$space-6;
+}
+
+.taskCheckbox {
+  display: flex;
+  align-items: flex-start;
+  gap: vars.$space-3;
+  cursor: pointer;
+  padding: vars.$space-3;
+  border: 1px solid vars.$border-light;
+  border-radius: vars.$space-1;
+  transition: background vars.$transition-fast;
+
+  &:has(input:checked) {
+    background: rgba(vars.$primary, 0.04);
+    border-color: rgba(vars.$primary, 0.3);
+  }
+
+  input[type='checkbox'] {
+    margin-top: 2px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: vars.$primary;
+    flex-shrink: 0;
+  }
+
+  span {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    strong {
+      font-size: vars.$text-sm;
+      color: vars.$text-primary;
+      font-weight: 500;
+    }
+
+    small {
+      font-size: vars.$text-xs;
+      color: vars.$text-secondary;
+    }
+  }
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: vars.$space-3;
+  padding-top: vars.$space-4;
+  border-top: 1px solid vars.$border-light;
+}

@@ -1,0 +1,56 @@
+@use '../../styles/variables' as vars;
+
+.filterBox {
+  background: white;
+  border-radius: vars.$space-2;
+  border: 1px solid vars.$border-light;
+  padding: vars.$space-6;
+  margin-bottom: vars.$space-6;
+  @include vars.card;
+}
+
+.filterTitle {
+  font-size: vars.$text-lg;
+  font-weight: 600;
+  color: vars.$text-primary;
+  margin-bottom: vars.$space-4;
+}
+
+.filterGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: vars.$space-4;
+  margin-bottom: vars.$space-4;
+
+  @media (max-width: vars.$bp-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.filterLabel {
+  font-size: vars.$text-xs;
+  color: vars.$text-secondary;
+  margin-bottom: vars.$space-1;
+  display: block;
+}
+
+.filterInput, .filterSelect {
+  width: 100%;
+  padding: vars.$space-2 vars.$space-3;
+  border: 1px solid vars.$border-light;
+  border-radius: vars.$space-1;
+  font-size: vars.$text-sm;
+  margin-bottom: 0;
+  transition: all vars.$transition-base;
+
+  &:focus {
+    outline: none;
+    border-color: vars.$primary;
+    box-shadow: 0 0 0 3px rgba(vars.$primary, 0.1);
+  }
+}
+
+.filterActions {
+  display: flex;
+  justify-content: flex-end;
+}

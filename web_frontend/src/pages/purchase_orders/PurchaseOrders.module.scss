@@ -1,0 +1,231 @@
+@use '../../styles/variables' as vars;
+
+.container {
+    padding: vars.$space-6;
+
+    @media (max-width: vars.$bp-md) {
+        padding: vars.$space-4;
+    }
+}
+
+// Horizontal title bar like ItemList
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: vars.$space-6;
+    margin-bottom: vars.$space-6;
+
+    h1 {
+        margin: 0;
+        color: vars.$text-primary;
+        font-size: vars.$text-2xl;
+        font-weight: 700;
+    }
+
+    .subtitle {
+        margin: 0;
+        color: vars.$text-secondary;
+        font-size: vars.$text-sm;
+    }
+
+    @media (max-width: vars.$bp-md) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: vars.$space-2;
+    }
+}
+
+.subtitle {
+    margin: 0;
+    color: vars.$text-secondary;
+    font-size: vars.$text-sm;
+}
+
+.loading {
+    text-align: center;
+    padding: vars.$space-8;
+    color: vars.$text-secondary;
+    font-size: vars.$text-lg;
+}
+
+.bulkActions {
+    display: flex;
+    gap: vars.$space-3;
+    align-items: center;
+    background: rgba(vars.$primary, 0.05);
+    border: 1px solid rgba(vars.$primary, 0.2);
+    padding: vars.$space-3 vars.$space-4;
+    border-radius: vars.$space-1;
+    margin-bottom: vars.$space-4;
+
+    span {
+        font-weight: 500;
+        color: vars.$primary;
+        flex: 1;
+    }
+}
+
+.tableWrapper {
+    background: white;
+    border-radius: vars.$space-2;
+    overflow-x: auto;
+    margin-bottom: vars.$space-4;
+    @include vars.card;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+        background: vars.$bg-light;
+        border-bottom: 2px solid vars.$border-light;
+
+        th {
+            padding: vars.$space-3 vars.$space-4;
+            text-align: left;
+            font-weight: 600;
+            color: vars.$text-primary;
+            font-size: vars.$text-sm;
+            white-space: nowrap;
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid vars.$border-light;
+            transition: background vars.$transition-base;
+            background: white;
+
+            &:nth-child(even) {
+                background: #f8f9fa;
+            }
+
+            &:hover {
+                background: rgba(vars.$primary, 0.04);
+            }
+
+            td {
+                padding: vars.$space-3 vars.$space-4;
+                font-size: vars.$text-sm;
+                color: vars.$text-primary;
+
+                &:last-child {
+                    text-align: right;
+                }
+            }
+        }
+    }
+}
+
+.checkboxCol {
+    width: 50px;
+    text-align: center;
+
+    input[type="checkbox"] {
+        cursor: pointer;
+        accent-color: vars.$primary;
+        width: 18px;
+        height: 18px;
+    }
+}
+
+.sortableHeader {
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: vars.$space-2;
+
+    &:hover {
+        background-color: #efefef;
+    }
+}
+
+.sortIndicator {
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 500;
+    margin-left: auto;
+    white-space: nowrap;
+}
+
+.badge {
+    display: inline-block;
+    background: rgba(vars.$primary, 0.1);
+    color: vars.$primary;
+    padding: vars.$space-1 vars.$space-2;
+    border-radius: vars.$space-1;
+    font-size: vars.$text-xs;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.actionsCol {
+    width: 100px;
+}
+
+.empty {
+    text-align: center;
+    padding: vars.$space-4;
+    color: vars.$text-secondary;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: vars.$space-2;
+    padding: vars.$space-4;
+    flex-wrap: wrap;
+}
+
+.pageSizeSelect {
+    padding: vars.$space-2 vars.$space-3;
+    border: 1px solid vars.$border-light;
+    border-radius: vars.$space-1;
+    background: white;
+    color: vars.$text-primary;
+    font-size: vars.$text-sm;
+    cursor: pointer;
+
+    &:hover {
+        border-color: #999;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: vars.$primary;
+    }
+}
+
+.pageBtn {
+    padding: vars.$space-2 vars.$space-3;
+    border: 1px solid vars.$border-light;
+    background: white;
+    color: vars.$text-primary;
+    border-radius: vars.$space-1;
+    cursor: pointer;
+    font-size: vars.$text-sm;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    &:hover:not(:disabled) {
+        background: #f0f0f0;
+        border-color: vars.$primary;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+.pageNumber {
+    color: vars.$text-primary;
+    font-weight: 600;
+    min-width: 100px;
+    text-align: center;
+}

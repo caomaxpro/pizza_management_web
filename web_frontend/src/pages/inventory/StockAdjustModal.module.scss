@@ -1,0 +1,140 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: #fff;
+    border-radius: 10px;
+    padding: 2rem 2.5rem;
+    width: 420px;
+    max-width: 95vw;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.badgeReceipt {
+    display: inline-block;
+    padding: 0.2em 0.75em;
+    border-radius: 1em;
+    background: #d1fae5;
+    color: #065f46;
+    font-size: 0.78em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.badgeStockTake {
+    display: inline-block;
+    padding: 0.2em 0.75em;
+    border-radius: 1em;
+    background: #ede9fe;
+    color: #4c1d95;
+    font-size: 0.78em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.itemName {
+    font-size: 0.95rem;
+    color: #374151;
+    font-weight: 500;
+}
+
+.unit {
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.fieldGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+}
+
+.hint {
+    font-size: 0.78rem;
+    color: #9ca3af;
+    margin-top: 2px;
+}
+
+.input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: #111827;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.15s;
+
+    &:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+}
+
+.textarea {
+    @extend .input;
+    resize: vertical;
+    min-height: 64px;
+}
+
+.error {
+    color: #ef4444;
+    font-size: 0.82rem;
+    margin-top: 2px;
+}
+
+.actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    margin-top: 0.25rem;
+}
+
+.closeBtn {
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: #9ca3af;
+    line-height: 1;
+    padding: 0;
+
+    &:hover {
+        color: #374151;
+    }
+}

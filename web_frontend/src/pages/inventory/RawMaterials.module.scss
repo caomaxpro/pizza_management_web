@@ -1,0 +1,201 @@
+@use '../../styles/variables' as vars;
+
+.container {
+  padding: vars.$space-6;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: vars.$space-8;
+
+  h1 {
+    font-size: 2.5rem;
+    color: vars.$text;
+    margin-bottom: vars.$space-2;
+  }
+
+  .subtitle {
+    font-size: vars.$text-lg;
+    color: vars.$text-secondary;
+  }
+}
+
+.content {
+  background: vars.$surface;
+  border: 1px solid vars.$border;
+  border-radius: vars.$radius-lg;
+  padding: vars.$space-6;
+  color: vars.$text;
+}
+
+// Overview Section
+.overviewSection {
+  margin-bottom: vars.$space-8;
+
+  h2 {
+    font-size: 1.5rem;
+    color: vars.$text;
+    margin-bottom: vars.$space-4;
+  }
+}
+
+.stockGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: vars.$space-4;
+}
+
+.stockCard {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: 2px solid transparent;
+  border-radius: vars.$radius-md;
+  padding: vars.$space-4;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  &.selected {
+    border-color: #ffd700;
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+  }
+
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: vars.$space-2;
+
+    h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .status {
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: white;
+    }
+  }
+
+  .cardContent {
+    .quantity {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: vars.$space-2;
+
+      .value {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-right: 8px;
+      }
+
+      .unit {
+        font-size: 1rem;
+        opacity: 0.9;
+      }
+    }
+
+    .thresholds {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      small {
+        opacity: 0.85;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+// Chart Section
+.chartSection {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: vars.$radius-lg;
+  padding: vars.$space-6;
+  margin-top: vars.$space-6;
+}
+
+.chartHeader {
+  margin-bottom: vars.$space-4;
+
+  h2 {
+    font-size: 1.5rem;
+    color: vars.$text;
+    margin-bottom: vars.$space-2;
+  }
+
+  .description {
+    color: vars.$text-secondary;
+    margin: 0;
+    font-size: vars.$text-base;
+  }
+}
+
+.chartsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: vars.$space-4;
+  margin-bottom: vars.$space-6;
+}
+
+.chartBox {
+  background: white;
+  border: 1px solid vars.$border;
+  border-radius: vars.$radius-md;
+  padding: vars.$space-4;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  h3 {
+    font-size: 1.1rem;
+    color: vars.$text;
+    margin: 0 0 vars.$space-3 0;
+    padding-bottom: vars.$space-2;
+    border-bottom: 2px solid vars.$border;
+  }
+}
+
+// Details Section
+.detailsSection {
+  background: white;
+  border: 1px solid vars.$border;
+  border-radius: vars.$radius-md;
+  padding: vars.$space-4;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: vars.$space-4;
+}
+
+.detailBox {
+  display: flex;
+  flex-direction: column;
+  padding: vars.$space-3;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: vars.$radius-md;
+
+  .label {
+    font-size: 0.9rem;
+    color: vars.$text-secondary;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+
+  .value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: vars.$text;
+  }
+}

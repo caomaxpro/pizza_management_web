@@ -1,0 +1,90 @@
+// Item Filter Styles
+.filterContainer {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.filterHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+
+    h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        color: #1e293b;
+        font-weight: 600;
+    }
+}
+
+.filterActions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.filterGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.filterGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    label {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #475569;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    input,
+    select {
+        padding: 0.7rem 0.9rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-family: inherit;
+        transition: all 0.2s ease;
+
+        &:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        &:hover:not(:focus) {
+            border-color: #cbd5e1;
+        }
+
+        &::placeholder {
+            color: #94a3b8;
+        }
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+    .filterHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .filterActions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .filterGrid {
+        grid-template-columns: 1fr;
+    }
+}

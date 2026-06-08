@@ -1,0 +1,345 @@
+.container {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    h1 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #1a1a1a;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+}
+
+// Stats section
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.statCard {
+    background: #f5f5f5;
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 1px solid #e0e0e0;
+}
+
+.statLabel {
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.statValue {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1a1a1a;
+
+    &.valid {
+        color: #22c55e;
+    }
+
+    &.error {
+        color: #ef4444;
+    }
+}
+
+// Table wrapper
+.tableWrapper {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin-bottom: 2rem;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+
+    thead {
+        background: #f9f9f9;
+        border-bottom: 2px solid #e0e0e0;
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid #e0e0e0;
+            transition: background-color 0.15s ease;
+
+            &:hover {
+                background-color: #fafafa;
+            }
+
+            &.rowError {
+                background-color: #fffbfb;
+            }
+
+            td {
+                padding: 1rem;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.checkboxCol {
+    width: 50px;
+    text-align: center;
+
+    input[type="checkbox"] {
+        cursor: pointer;
+        width: 18px;
+        height: 18px;
+
+        &:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    }
+}
+
+.nameCell {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.name {
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+.description {
+    font-size: 0.85rem;
+    color: #999;
+}
+
+.badge {
+    display: inline-block;
+    background: #e8e8ff;
+    color: #5a4fcf;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.price {
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+// Status indicators
+.validStatus,
+.errorStatus {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.validStatus {
+    color: #22c55e;
+    font-weight: 500;
+}
+
+.errorStatus {
+    color: #ef4444;
+    font-weight: 500;
+    span {
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+.actionCol {
+    width: 60px;
+    text-align: center;
+}
+
+.removeBtn {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+        background: #ffe8e8;
+    }
+
+    &:active {
+        background: #ffc9c9;
+    }
+}
+
+.imageCol {
+    width: 80px;
+    text-align: center;
+}
+
+.thumbnail {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #e0e0e0;
+
+    &:hover {
+        transform: scale(1.08);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+}
+
+.noImage {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+    color: #999;
+    font-size: 1.2rem;
+}
+
+// Modal Overlay
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    animation: fadeIn 0.2s ease;
+}
+
+// Preview Modal
+.previewModal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    z-index: 1000;
+    max-width: 90vw;
+    max-height: 90vh;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.previewImage {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 6px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #666;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    z-index: 1001;
+
+    &:hover {
+        background: #e8e8e8;
+        color: #1a1a1a;
+    }
+}
+
+// Animations
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+// Actions
+.actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+
+    button {
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+}

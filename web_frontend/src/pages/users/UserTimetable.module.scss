@@ -1,0 +1,714 @@
+@use '../../styles/variables' as vars;
+
+// == wrapper ==================================================================
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: vars.$space-4;
+}
+
+// == navigation bar ===========================================================
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: vars.$space-3;
+  flex-wrap: wrap;
+
+  .weekLabel {
+    font-size: vars.$text-lg;
+    font-weight: vars.$weight-semibold;
+    color: vars.$text;
+    min-width: 18rem;
+    text-align: center;
+  }
+
+  .todayBtn {
+    margin-left: auto;
+  }
+}
+
+// == state messages ===========================================================
+
+.stateMsg {
+  display: flex;
+  align-items: center;
+  gap: vars.$space-2;
+  color: vars.$text-secondary;
+  font-size: vars.$text-sm;
+  padding: vars.$space-6 0;
+}
+
+.errorMsg {
+  padding: vars.$space-3 vars.$space-4;
+  background: rgba(vars.$error, 0.08);
+  border-left: 3px solid vars.$error;
+  color: vars.$error;
+  border-radius: vars.$radius-md;
+  font-size: vars.$text-sm;
+}
+
+.spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid vars.$border;
+  border-top-color: vars.$primary;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// == CSS-grid timetable =======================================================
+
+.gridScroll {
+  overflow-x: auto;
+  border-radius: vars.$radius-sm;
+//   box-shadow: vars.$shadow;
+  border: 2px solid vars.$border;
+  background: vars.$surface;
+}
+
+// 8 columns: [hour-label] + 7 days
+.grid {
+  display: grid;
+  grid-template-columns: 8rem repeat(7, minmax(8rem, 1fr));
+  min-width: 740px;
+}
+
+// shared cell base
+.cell {
+  border-right: 1px solid vars.$border;
+  border-bottom: 1px solid vars.$border;
+}
+
+// == header row ===============================================================
+
+.cornerCell {
+  background: vars.$bg-light;
+  border-bottom: 2px solid vars.$border;
+}
+
+.dayHeader {
+  background: vars.$bg-light;
+  border-bottom: 2px solid vars.$border;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: vars.$space-2 vars.$space-3;
+  gap: vars.$space-1;
+
+  .dayShort {
+    font-size: vars.$text-xs;
+    font-weight: vars.$weight-semibold;
+    color: vars.$text-secondary;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .dayDate {
+    font-size: vars.$text-lg;
+    font-weight: vars.$weight-bold;
+    color: vars.$text;
+    line-height: 1;
+  }
+
+  &.todayHeader {
+    background: vars.$primary-light;
+
+    .dayShort { color: vars.$primary; }
+    .dayDate  { color: vars.$primary; }
+  }
+}
+
+// == hour label column ========================================================
+
+.hourLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: vars.$space-2 vars.$space-3;
+  font-size: vars.$text-xs;
+  font-weight: vars.$weight-medium;
+  color: vars.$text-secondary;
+  background: vars.$bg-light;
+  border-right: 2px solid vars.$border;
+  white-space: nowrap;
+  position: sticky;
+  left: 0;
+  z-index: 10;
+  gap: vars.$space-1;
+}
+
+// == slot cells (clickable) ===================================================
+
+.slotCell {
+  min-height: 6rem;
+  padding: vars.$space-2;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+  transition: background vars.$transition-fast;
+  position: relative;
+  z-index: 0;
+
+  &:hover {
+    background: rgba(vars.$primary, 0.05);
+
+    .addHint {
+      opacity: 1;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid vars.$primary;
+    outline-offset: -2px;
+  }
+
+  &.occupied {
+    background: rgba(vars.$primary, 0.04);
+  }
+
+  &.todayCol {
+    background: rgba(vars.$primary, 0.03);
+
+    &.occupied {
+      background: rgba(vars.$primary, 0.1);
+    }
+  }
+
+  &.pastSlot {
+    cursor: not-allowed;
+    background: rgba(107, 114, 128, 0.15);
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  &.tooSoonSlot {
+    cursor: not-allowed;
+    background: rgba(107, 114, 128, 0.15);
+    pointer-events: none;
+    opacity: 0.7;
+  }
+}
+
+.addHint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: vars.$text-lg;
+  color: vars.$gray-light;
+  opacity: 0;
+  transition: opacity vars.$transition-fast;
+  pointer-events: none;
+  user-select: none;
+}
+
+.assigneeBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.1rem vars.$space-2;
+  border-radius: vars.$radius-full;
+  font-size: 0.7rem;
+  font-weight: vars.$weight-medium;
+  background: vars.$primary;
+  color: #fff;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// == staff chips in window-start cells ========================================
+
+.staffChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px vars.$space-2;
+  border-radius: vars.$radius-full;
+  font-size: 0.7rem;
+  font-weight: vars.$weight-semibold;
+  background: var(--window-color, vars.$primary);
+  color: var(--window-foreground, #000);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 4px);
+  margin: 1px;
+  opacity: 0.9;
+}
+
+// == shift period window bands ================================================
+
+// Period name shown in the label column
+.windowLabel {
+  font-size: vars.$text-sm;
+  font-weight: vars.$weight-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--window-foreground, vars.$text);
+  line-height: 1.1;
+}
+
+.windowRange {
+  font-size: vars.$text-sm;
+  color: var(--window-foreground, vars.$text-secondary);
+  line-height: 1.1;
+}
+
+// Per-period: sets the CSS custom property and tints the hour label background
+.periodMorning {
+  --window-color: #fbbf24;
+  --window-foreground: rgb(71, 71, 71);
+  &.hourLabel { background: #fbbf24 !important; }
+  &.slotCell:not(.pastSlot):not(.tooSoonSlot) { background: rgba(251, 191, 36, 0.02); }
+}
+
+.periodLunch {
+  --window-color: #f87171;
+  --window-foreground: rgb(71, 71, 71);
+  &.hourLabel { background: #f87171 !important; }
+  &.slotCell:not(.pastSlot):not(.tooSoonSlot) { background: rgba(248, 113, 113, 0.02); }
+}
+
+.periodAfternoon {
+  --window-color: #60a5fa;
+  --window-foreground: rgb(71, 71, 71);
+  &.hourLabel { background: #60a5fa !important; }
+  &.slotCell:not(.pastSlot):not(.tooSoonSlot) { background: rgba(96, 165, 250, 0.02); }
+}
+
+.periodEvening {
+  --window-color: #a78bfa;
+  --window-foreground: rgb(71, 71, 71);
+  &.hourLabel { background: #a78bfa !important; }
+  &.slotCell:not(.pastSlot):not(.tooSoonSlot) { background: rgba(167, 139, 250, 0.02); }
+}
+
+.periodNight {
+  --window-color: #374151;
+  --window-foreground: #fff;
+  &.hourLabel { background: #374151 !important; }
+  &.slotCell:not(.pastSlot):not(.tooSoonSlot) { background: rgba(55, 65, 81, 0.02); }
+}
+
+// == modal overlay ============================================================
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: vars.$space-4;
+}
+
+.modal {
+  background: vars.$surface;
+  border-radius: vars.$radius-xl;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow: visible;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: vars.$space-4 vars.$space-6;
+  border-bottom: 1px solid vars.$border;
+
+  h3 {
+    margin: 0;
+    font-size: vars.$text-base;
+    font-weight: vars.$weight-semibold;
+    color: vars.$text;
+  }
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: vars.$text-secondary;
+  cursor: pointer;
+  padding: 0 vars.$space-1;
+  border-radius: vars.$radius-sm;
+
+  &:hover { color: vars.$text; background: vars.$bg-light; }
+}
+
+.modalBody {
+  padding: vars.$space-4 vars.$space-6;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: vars.$space-4;
+  height: 650px
+}
+
+.assignedSection {
+  display: flex;
+  flex-direction: column;
+  gap: vars.$space-2;
+}
+
+.sectionLabel {
+  margin: 0 0 vars.$space-1;
+  font-size: vars.$text-xs;
+  font-weight: vars.$weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: vars.$text-secondary;
+}
+
+.assignedRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: vars.$space-3;
+  padding: vars.$space-2 vars.$space-3;
+  background: vars.$bg-light;
+  border-radius: vars.$radius-md;
+  border: 1px solid vars.$border;
+}
+
+.assignedInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.assignedName {
+  font-size: vars.$text-sm;
+  font-weight: vars.$weight-medium;
+  color: vars.$text;
+}
+
+.assignedTime {
+  font-size: vars.$text-xs;
+  color: vars.$text-secondary;
+}
+
+.assignedActions {
+  display: flex;
+  gap: vars.$space-2;
+}
+
+// ── Task permissions (inline in assigned row + in assign form) ──
+.taskPermsRow {
+  display: flex;
+  gap: vars.$space-3;
+  padding-top: vars.$space-1;
+  margin-top: vars.$space-1;
+  border-top: 1px solid vars.$border;
+}
+
+// Dual-scope task perm block (replaces single .taskPermsRow when both scopes present)
+.taskPermSection {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-top: vars.$space-1;
+  margin-top: vars.$space-1;
+  border-top: 1px solid vars.$border;
+}
+
+.taskPermScopeRow {
+  display: flex;
+  align-items: center;
+  gap: vars.$space-2;
+}
+
+.taskPermScopeLabel {
+  font-size: 10px;
+  font-weight: vars.$weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: vars.$text-secondary;
+  min-width: 62px;
+  flex-shrink: 0;
+}
+
+// Scope toggle button group (Permanent / This shift only)
+.taskScopeToggle {
+  display: flex;
+  gap: 0;
+  border: 1px solid vars.$border;
+  border-radius: vars.$radius-sm;
+  overflow: hidden;
+  width: fit-content;
+  margin-bottom: vars.$space-1;
+}
+
+.taskScopeBtn {
+  padding: vars.$space-1 vars.$space-3;
+  font-size: vars.$text-xs;
+  border: none;
+  background: transparent;
+  color: vars.$text-secondary;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+  line-height: 1.4;
+
+  &:hover {
+    background: vars.$bg-light;
+    color: vars.$text;
+  }
+}
+
+.taskScopeBtnActive {
+  padding: vars.$space-1 vars.$space-3;
+  font-size: vars.$text-xs;
+  border: none;
+  background: vars.$primary;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.12s;
+  line-height: 1.4;
+
+  &:hover {
+    background: vars.$primary;
+    filter: brightness(1.08);
+  }
+}
+
+.taskPermsInForm {
+  padding: vars.$space-2 vars.$space-3;
+  background: rgba(vars.$primary, 0.04);
+  border: 1px solid rgba(vars.$primary, 0.15);
+  border-radius: vars.$radius-sm;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: vars.$space-3;
+}
+
+.taskPermsLabel {
+  margin: 0 vars.$space-2 0 0;
+  font-size: vars.$text-xs;
+  font-weight: vars.$weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: vars.$text-secondary;
+  flex: 0 0 auto;
+}
+
+.taskPermCheck {
+  display: flex;
+  align-items: center;
+  gap: vars.$space-1;
+  cursor: pointer;
+  font-size: vars.$text-xs;
+  color: vars.$text;
+
+  input[type='checkbox'] {
+    width: 13px;
+    height: 13px;
+    cursor: pointer;
+    accent-color: vars.$primary;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  &:has(input:disabled) {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.saveTaskBtn {
+  margin-left: auto;
+  padding: vars.$space-1 vars.$space-2;
+  font-size: vars.$text-xs;
+  border: 1px solid vars.$primary;
+  border-radius: vars.$radius-sm;
+  background: transparent;
+  color: vars.$primary;
+  cursor: pointer;
+  line-height: 1;
+
+  &:hover:not(:disabled) {
+    background: rgba(vars.$primary, 0.08);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.editBtn {
+  padding: vars.$space-1 vars.$space-3;
+  font-size: vars.$text-xs;
+  border: 1px solid vars.$border;
+  border-radius: vars.$radius-sm;
+  background: vars.$surface;
+  cursor: pointer;
+  color: vars.$text;
+
+  &:hover:not(:disabled) {
+    background: vars.$primary;
+    color: #fff;
+    border-color: vars.$primary;
+  }
+
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+.removeBtn {
+  padding: vars.$space-1 vars.$space-3;
+  font-size: vars.$text-xs;
+  border: 1px solid vars.$error;
+  border-radius: vars.$radius-sm;
+  background: vars.$surface;
+  cursor: pointer;
+  color: vars.$error;
+
+  &:hover:not(:disabled) {
+    background: vars.$error;
+    color: #fff;
+  }
+
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+.formSection {
+  display: flex;
+  flex-direction: column;
+  gap: vars.$space-3;
+}
+
+.warningBox {
+  padding: vars.$space-3 vars.$space-3;
+  background: rgba(217, 119, 6, 0.08);
+  border-left: 3px solid rgba(217, 119, 6, 0.6);
+  border-radius: vars.$radius-md;
+  font-size: vars.$text-sm;
+  color: rgba(217, 119, 6, 0.9);
+  font-weight: vars.$weight-medium;
+}
+
+.noStaffMsg {
+  padding: vars.$space-3;
+  background: rgba(vars.$text-secondary, 0.06);
+  border-radius: vars.$radius-md;
+  font-size: vars.$text-sm;
+  color: vars.$text-secondary;
+  font-style: italic;
+}
+
+.formRow {
+  display: flex;
+  flex-direction: column;
+  gap: vars.$space-1;
+}
+
+.formLabel {
+  font-size: vars.$text-xs;
+  font-weight: vars.$weight-medium;
+  color: vars.$text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.formSelect,
+.formInput {
+  padding: vars.$space-2 vars.$space-3;
+  border: 1px solid vars.$border;
+  border-radius: vars.$radius-md;
+  font-size: vars.$text-sm;
+  color: vars.$text;
+  background: vars.$surface;
+  width: 100%;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: vars.$primary;
+    box-shadow: 0 0 0 3px rgba(vars.$primary, 0.12);
+  }
+
+  &:disabled {
+    background: vars.$bg-light;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
+
+.timeRange {
+  display: flex;
+  align-items: center;
+  gap: vars.$space-2;
+}
+
+.timeInput {
+  padding: vars.$space-2 vars.$space-3;
+  border: 1px solid vars.$border;
+  border-radius: vars.$radius-md;
+  font-size: vars.$text-sm;
+  color: vars.$text;
+  background: vars.$surface;
+  flex: 1;
+
+  &:focus {
+    outline: none;
+    border-color: vars.$primary;
+    box-shadow: 0 0 0 3px rgba(vars.$primary, 0.12);
+  }
+
+  &:disabled {
+    background: vars.$bg-light;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
+
+.timeSep {
+  color: vars.$text-secondary;
+  font-weight: vars.$weight-medium;
+  flex-shrink: 0;
+}
+
+.modalFooter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: vars.$space-2;
+  padding: vars.$space-4 vars.$space-6;
+  border-top: 1px solid vars.$border;
+}
+
+.cancelBtn {
+  padding: vars.$space-2 vars.$space-4;
+  font-size: vars.$text-sm;
+  border: 1px solid vars.$border;
+  border-radius: vars.$radius-md;
+  background: vars.$surface;
+  color: vars.$text;
+  cursor: pointer;
+
+  &:hover:not(:disabled) { background: vars.$bg-light; }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}

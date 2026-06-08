@@ -1,0 +1,24 @@
+cd /home/cao-le/Flutter\ Projects/pizza_ordering_app/backend/backend_dj
+
+# Xóa database
+rm db.sqlite3
+
+# Xóa migrations files cũ (giữ lại __init__.py)
+rm pizza_management/migrations/0*.py
+rm delivery_management/migrations/0*.py
+rm user_management/migrations/0*.py
+
+# Xóa pycache
+find . -type d -name __pycache__ -exec rm -rf {} +
+
+# Tạo migrations mới
+python manage.py makemigrations
+
+# Apply migrations
+python manage.py migrate
+
+# Tạo superuser
+python manage.py createsuperuser
+
+# Chạy server
+python manage.py runserver

@@ -1,0 +1,44 @@
+@use '../../styles/variables' as vars;
+
+.listContainer {
+    width: 100%;
+}
+
+.loading {
+    text-align: center;
+    padding: 2rem 0;
+    color: #888;
+}
+
+.bulkActions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    background: #f8f8f8;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+}
+.badge {
+    display: inline-block;
+    padding: 0.2em 0.7em;
+    border-radius: 1em;
+    background: vars.$bg-light;
+    color: vars.$text-primary;
+    font-size: 0.95em;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+/* Status-specific badge colors */
+.badgePending   { @extend .badge; background: rgba(vars.$warning, 0.12); color: vars.$warning; }
+.badgePaid      { @extend .badge; background: rgba(vars.$success, 0.12); color: vars.$success; }
+.badgeOrdered   { @extend .badge; background: rgba(vars.$info, 0.12); color: vars.$info; }
+.badgeDelivered { @extend .badge; background: vars.$bg-light; color: vars.$text-primary; }
+.badgeCancelled { @extend .badge; background: rgba(vars.$error, 0.12); color: vars.$error; }
+
+/* Action button overrides */
+.btnView   { background: rgba(102,126,234,0.08); color: #667eea; border: 1px solid rgba(102,126,234,0.16); box-shadow: none; &:hover:not(:disabled){ background: rgba(102,126,234,0.13); } }
+.btnEdit   { background: linear-gradient(135deg,#667eea 0%,#764ba2 100%); color: white; border: none; &:hover:not(:disabled){ box-shadow: 0 6px 14px rgba(102,126,234,0.2); } }
+.btnDelete { background: white; color: #ef4444; border: 1px solid rgba(239,68,68,0.14); &:hover:not(:disabled){ background: rgba(239,68,68,0.04); } }

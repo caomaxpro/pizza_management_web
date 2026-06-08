@@ -1,0 +1,209 @@
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+
+    h1 {
+        margin: 0;
+        font-size: 1.8rem;
+        color: #333;
+    }
+}
+
+.backBtn {
+    padding: 0.5rem 1rem;
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: #333;
+    }
+}
+
+.detailCard {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+.imageSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f8f8;
+    border-radius: 6px;
+    overflow: hidden;
+    min-height: 300px;
+
+    .detailImage {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        max-width: 100%;
+        max-height: 500px;
+    }
+
+    .noImage {
+        font-size: 0.95rem;
+        color: #aaa;
+        text-align: center;
+        padding: 2rem;
+    }
+}
+
+.infoSection {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.titleGroup {
+    h2 {
+        margin: 0;
+        font-size: 1.6rem;
+        color: #333;
+    }
+
+    .subType {
+        margin-top: 0.4rem;
+        padding: 0.3rem 0.6rem;
+        background-color: #f0f0f0;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        color: #666;
+        display: inline-block;
+    }
+}
+
+.statusGroup {
+    display: flex;
+    gap: 0.5rem;
+
+    .badgeActive {
+        padding: 0.4rem 0.8rem;
+        background-color: #ecf5ec;
+        color: #2d7a3a;
+        border-radius: 3px;
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+
+    .badgeInactive {
+        padding: 0.4rem 0.8rem;
+        background-color: #fdeaea;
+        color: #a83a3a;
+        border-radius: 3px;
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+}
+
+.detailsGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+}
+
+.detailItem {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #f0f0f0;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    .label {
+        font-weight: 500;
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    .value {
+        color: #333;
+        word-break: break-word;
+        font-size: 0.95rem;
+    }
+
+    .pieceImage {
+        width: 120px;
+        height: auto;
+        border-radius: 4px;
+        object-fit: cover;
+    }
+}
+
+.loading {
+    text-align: center;
+    padding: 4rem 2rem;
+    font-size: 1.2rem;
+    color: #999;
+}
+
+.error {
+    background-color: #fdeaea;
+    color: #a83a3a;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f0f0f0;
+
+    .editBtn {
+        flex: 1;
+        padding: 0.7rem 1.5rem;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.95rem;
+        font-weight: 600;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background-color: #45a049;
+        }
+    }
+
+    .backBtn {
+        flex: 1;
+        padding: 0.7rem 1.5rem;
+        background-color: #f0f0f0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.95rem;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background-color: #e0e0e0;
+        }
+    }
+}

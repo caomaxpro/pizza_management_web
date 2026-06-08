@@ -1,0 +1,9 @@
+@use '../../styles/variables' as vars;
+
+.container {
+    padding: vars.$space-6;
+
+    @media (max-width: vars.$bp-md) {
+        padding: vars.$space-4;
+    }
+}

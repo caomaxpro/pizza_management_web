@@ -1,0 +1,35 @@
+@use '../../styles/variables' as vars;
+
+.container {
+  padding: vars.$space-6;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: vars.$space-8;
+
+  h1 {
+    font-size: 2.5rem;
+    color: vars.$text;
+    margin-bottom: vars.$space-2;
+  }
+
+  .subtitle {
+    font-size: vars.$text-lg;
+    color: vars.$text-secondary;
+  }
+}
+
+.content {
+  background: vars.$surface;
+  border: 1px solid vars.$border;
+  border-radius: vars.$radius-lg;
+  padding: vars.$space-6;
+  color: vars.$text-secondary;
+  text-align: center;
+
+  p {
+    margin: 0;
+  }
+}

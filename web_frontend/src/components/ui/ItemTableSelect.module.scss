@@ -1,0 +1,72 @@
+.tableSelectWrapper {
+  width: 100%;
+  margin: 0 0 16px 0;
+}
+
+.label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px 0 rgba(30,41,59,0.07);
+}
+
+thead {
+  background: #f1f5f9;
+}
+
+th, td {
+  padding: 10px 14px;
+  text-align: left;
+}
+
+th {
+  font-weight: 600;
+  color: #334155;
+  font-size: 15px;
+}
+
+tbody tr {
+  border-bottom: 1px solid #e2e8f0;
+  transition: background 0.2s;
+}
+
+tbody tr:hover {
+  background: #f8fafc;
+}
+
+.image {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #f1f5f9;
+}
+
+.noImage {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.previewBtn {
+  background: none;
+  border: none;
+  color: #2563eb;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 0 8px;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+
+.previewBtn:hover {
+  background: #e0e7ef;
+}

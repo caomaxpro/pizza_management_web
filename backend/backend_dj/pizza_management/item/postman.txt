@@ -1,0 +1,72 @@
+curl -X POST http://127.0.0.1:8000/api/ingredients/import-json/   -H "Content-Type: application/json"   -d @"/home/cao-le/Flutter Projects/pizza_ordering_app/backend/backend_dj/test/ingredients.json"
+
+# Get all ingredients
+curl http://127.0.0.1:8000/api/ingredients/get-all-items/
+
+# Get multiple ingredients (IDs 1, 2, 3)
+curl "http://127.0.0.1:8000/api/ingredients/get-many-items/?ids=1&ids=2&ids=3"
+
+# Get single ingredient (ID 1)
+curl http://127.0.0.1:8000/api/ingredients/1/get-item/
+
+# Delete single ingredient (ID 1)
+curl -X DELETE http://127.0.0.1:8000/api/ingredients/58/delete-item/
+
+# Delete multiple ingredients (IDs 1, 2, 3)
+curl -X POST http://127.0.0.1:8000/api/ingredients/delete-many/ \
+  -H "Content-Type: application/json" \
+  -d '{"ids": [58, 2, 3]}'
+
+# Delete all ingredients
+curl -X POST http://127.0.0.1:8000/api/ingredients/delete-all/ \
+  -H "Content-Type: application/json"
+
+# Tăng 10%
+curl -X PATCH http://127.0.0.1:8000/api/ingredients/adjust-prices/ \
+  -H "Content-Type: application/json" \
+  -d '{"percent": 10}'
+
+# Rollback về original_price
+curl -X PATCH http://127.0.0.1:8000/api/ingredients/rollback-prices/ \
+  -H "Content-Type: application/json"
+
+# Create an item
+curl -X POST http://127.0.0.1:8000/api/items/   -H "Content-Type: application/json"   -d '{
+    "name": "Spicy Hot",
+    "price": 12.49,
+    "description": "Pepperoni, jalapenos, hot honey",
+    "category": "pizza",
+    "type": "pizza",
+    "dough": 200,
+    "sauce": 195,
+    "cheese": 190,
+    "toppings": [166, 175],
+    "is_active": true,
+    "stock_quantity": 50
+  }'
+
+# import all items
+curl -X POST http://127.0.0.1:8000/api/items/import-json/   -F "json_file=@/home/cao-le/Flutter Projects/pizza_ordering_app/backend/backend_dj/test/items.json"
+
+# list all items from db
+curl -X GET http://127.0.0.1:8000/api/items/
+
+
+# retrieve specific items from db
+
+
+# delete all items
+curl -X POST http://127.0.0.1:8000/api/items/delete-all/
+
+
+curl -s http://127.0.0.1:8000/api/items/ | jq '.[] | {id, name}'
+
+# show all items in details
+curl -s http://127.0.0.1:8000/api/items/ | jq '.'
+
+# show all items in details but only show ingredient id
+curl -s http://127.0.0.1:8000/api/items/ | jq '.[] | {id, name, dough_id: .dough.id, sauce_id: .sauce.id, cheese_id: .cheese.id, toppings_ids: [.toppings[].id], extras_ids: [.extras[].id]}'
+
+# show item in details
+curl -s http://127.0.0.1:8000/api/items/55/ | jq '.'
+

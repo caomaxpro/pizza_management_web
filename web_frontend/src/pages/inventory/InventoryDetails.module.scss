@@ -1,0 +1,210 @@
+.container {
+    padding: 1.5rem;
+    max-width: 900px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.subtitle {
+    margin: 0.25rem 0 0;
+    color: #6b7280;
+    font-size: 0.95rem;
+}
+
+.detailsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.detailCard {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Vertical details list (no borders) */
+.detailsList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.detailRow {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.25rem 0;
+}
+
+.detailKey {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #4b5563;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.detailValue {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.detailLabel {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.detailValue {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.badgeOk {
+    display: inline-block;
+    padding: 0.2em 0.7em;
+    border-radius: 1em;
+    background: #d1fae5;
+    color: #065f46;
+    font-size: 0.85em;
+    font-weight: 500;
+}
+
+.badgeLow {
+    display: inline-block;
+    padding: 0.2em 0.7em;
+    border-radius: 1em;
+    background: #fef3c7;
+    color: #92400e;
+    font-size: 0.85em;
+    font-weight: 500;
+}
+
+.badgeActive {
+    display: inline-block;
+    padding: 0.2em 0.7em;
+    border-radius: 1em;
+    background: #e0e7ff;
+    color: #3730a3;
+    font-size: 0.85em;
+    font-weight: 500;
+}
+
+.badgeInactive {
+    display: inline-block;
+    padding: 0.2em 0.7em;
+    border-radius: 1em;
+    background: #fee2e2;
+    color: #991b1b;
+    font-size: 0.85em;
+    font-weight: 500;
+}
+
+.adjustPanel {
+    background: #f3f4f6;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+
+    h3 {
+        margin: 0 0 0.75rem;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+}
+
+.adjustRow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+
+    label {
+        font-size: 0.9rem;
+        color: #374151;
+        min-width: 160px;
+    }
+
+    input {
+        padding: 0.35rem 0.6rem;
+        border: 1px solid #d1d5db;
+        border-radius: 5px;
+        font-size: 0.95rem;
+    }
+}
+
+.logsSection {
+    margin-top: 1.5rem;
+
+    h3 {
+        margin: 0 0 0.75rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #111827;
+    }
+}
+
+.empty {
+    color: #9ca3af;
+    font-size: 0.95rem;
+}
+
+.logsTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+
+    th {
+        text-align: left;
+        padding: 0.5rem 1rem;
+        background: #f3f4f6;
+        border-bottom: 2px solid #e5e7eb;
+        font-weight: 600;
+        color: #374151;
+    }
+
+    td {
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid #f3f4f6;
+        color: #374151;
+    }
+
+    tr:hover td {
+        background: #f9fafb;
+    }
+}
+
+.positive {
+    color: #059669;
+    font-weight: 600;
+}
+
+.negative {
+    color: #dc2626;
+    font-weight: 600;
+}

@@ -1,0 +1,150 @@
+@use '../../styles/variables' as vars;
+
+.sidebar {
+  background: vars.$surface;
+  border-right: 1px solid vars.$border;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  @media (min-width: 500px) and (max-width: 900px) {
+    position: fixed;
+    right: 0;
+    top: vars.$header-height;
+    width: 50%;
+    height: calc(100vh - vars.$header-height);
+    z-index: 100;
+    transform: translateX(100%);
+    box-shadow: vars.$shadow-lg;
+    transition: transform vars.$transition-base;
+    pointer-events: auto;
+
+    &.closed {
+      transform: translateX(100%);
+    }
+
+    &.open {
+      transform: translateX(0);
+    }
+  }
+
+  @media (max-width: 500px) {
+    position: fixed;
+    right: 0;
+    top: vars.$header-height;
+    width: 100%;
+    height: calc(100vh - vars.$header-height);
+    z-index: 100;
+    transform: translateX(100%);
+    box-shadow: vars.$shadow-lg;
+    transition: transform vars.$transition-base;
+    pointer-events: auto;
+
+    &.closed {
+      transform: translateX(100%);
+    }
+
+    &.open {
+      transform: translateX(0);
+    }
+  }
+}
+
+.nav {
+  list-style: none;
+  margin: 0;
+  padding: 0 0;
+}
+
+.navItem {
+  margin: 0;
+  padding: 0;
+
+  a,
+  button {
+    @include vars.flex-center;
+    gap: vars.$space-3;
+    width: 100%;
+    padding: vars.$space-3 vars.$space-4;
+    text-decoration: none;
+    background: none;
+    border: none;
+    color: vars.$text-secondary;
+    font-size: vars.$text-sm;
+    font-weight: vars.$weight-medium;
+    cursor: pointer;
+    transition: all vars.$transition-fast;
+    text-align: left;
+
+    .icon {
+      font-size: vars.$text-lg;
+      flex-shrink: 0;
+    }
+
+    .label {
+      flex: 1;
+    }
+
+    &:hover {
+      background-color: vars.$gray-lightest;
+      color: vars.$primary;
+    }
+
+    &.active {
+      background-color: rgba(vars.$primary, 0.1);
+      color: vars.$primary;
+      border-left: 3px solid vars.$primary;
+      padding-left: calc(vars.$space-4 - 3px);
+
+      .icon {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+
+.divider {
+  height: 1px;
+  background: vars.$border;
+  margin: vars.$space-2 0;
+}
+
+.scrollable {
+  @include vars.scrollbar;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+
+  @media (max-width: vars.$bp-md) {
+    display: block;
+
+    &.hidden {
+      display: none;
+    }
+  }
+}
+
+.toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: vars.$text;
+  font-size: vars.$text-xl;
+  padding: vars.$space-2;
+
+  @media (max-width: 900px) {
+    display: flex;
+    align-items: center;
+  }
+}

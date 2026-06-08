@@ -1,0 +1,435 @@
+{
+  "ingredients": [
+    {
+      "name": "Bacon Crumble",
+      "description": "Crispy bacon crumbles",
+      "price": 2.0,
+      "type": "topping",
+      "sub_type": "meat",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/meat/bacon_crumble.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/piece/meat/bacon_crumble.png"
+    },
+    {
+      "name": "Bacon Strips",
+      "description": "Strips of crispy bacon",
+      "price": 2.0,
+      "type": "topping",
+      "sub_type": "meat",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/meat/bacon_strips.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/piece/meat/bacon.png"
+    },
+    {
+      "name": "Butter Chicken",
+      "description": "Tender butter chicken",
+      "price": 2.5,
+      "type": "topping",
+      "sub_type": "meat",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/meat/butter_chicken.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/piece/meat/butter_chicken.png"
+    },
+    {
+      "name": "Grilled Chicken",
+      "description": "Grilled chicken breast",
+      "price": 2.5,
+      "type": "topping",
+      "sub_type": "meat",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/meat/grilled_chicken.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/piece/meat/grilled_chicken.png"
+    },
+    {
+      "name": "Ground Beef",
+      "description": "Ground beef",
+      "price": 2.0,
+      "type": "topping",
+      "sub_type": "meat",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/meat/ground_beef.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/piece/meat/ground_beef.png"
+    },
+    {
+      "name": "Italian Ham",
+      "description": "Italian prosciutto ham",
+      "price": 2.5,
+      "type": "topping",
+      "sub_type": "meat",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/meat/italian_ham.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/piece/meat/ham.png"
+    },
+    {
+      "name": "Pepperoni",
+      "description": "Classic pepperoni slices",
+      "price": 2.0,
+      "type": "topping",
+      "sub_type": "meat",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/meat/pepperoni.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/piece/meat/pepperoni.png"
+    },
+    {
+      "name": "Salami",
+      "description": "Italian salami",
+      "price": 2.0,
+      "type": "topping",
+      "sub_type": "meat",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/meat/salami.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/piece/meat/salami.png"
+    },
+    {
+      "name": "Spicy Italian Sausage",
+      "description": "Spicy Italian sausage",
+      "price": 2.5,
+      "type": "topping",
+      "sub_type": "meat",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/meat/spicy_italian_sausage.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/piece/meat/italian_sausage.png"
+    },
+    {
+      "name": "Broccoli",
+      "description": "Fresh broccoli florets",
+      "price": 1.5,
+      "type": "topping",
+      "sub_type": "veggie",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/broccoli.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/broccoli.png"
+    },
+    {
+      "name": "Bruschetta",
+      "description": "Toasted bruschetta topping",
+      "price": 1.75,
+      "type": "topping",
+      "sub_type": "veggie",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/bruschetta.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/bruschetta.png"
+    },
+    {
+      "name": "Fresh Mushrooms",
+      "description": "Fresh sliced mushrooms",
+      "price": 1.5,
+      "type": "topping",
+      "sub_type": "veggie",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/fresh_mushrooms.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/fresh_mushrooms.png"
+    },
+    {
+      "name": "Green Olives",
+      "description": "Fresh green olives",
+      "price": 1.5,
+      "type": "topping",
+      "sub_type": "veggie",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/green_olives.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/green_olives.png"
+    },
+    {
+      "name": "Green Peppers",
+      "description": "Crisp green bell peppers",
+      "price": 1.5,
+      "type": "topping",
+      "sub_type": "veggie",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/green_peppers.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/green_peppers.png"
+    },
+    {
+      "name": "Hot Banana Peppers",
+      "description": "Spicy hot banana peppers",
+      "price": 1.75,
+      "type": "topping",
+      "sub_type": "veggie",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/hot_banana_peppers.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/hot_banana_peppers.png"
+    },
+    {
+      "name": "Jalapeno Peppers",
+      "description": "Fresh jalapeno peppers",
+      "price": 1.75,
+      "type": "topping",
+      "sub_type": "veggie",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/jalapeno_peppers.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/jalapeno_peppers.png"
+    },
+    {
+      "name": "Kalamata Olives",
+      "description": "Premium kalamata olives",
+      "price": 1.75,
+      "type": "topping",
+      "sub_type": "veggie",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/kalamata_olives.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/kalamata_olives.png"
+    },
+    {
+      "name": "Pineapple",
+      "description": "Fresh pineapple chunks",
+      "price": 2.0,
+      "type": "topping",
+      "sub_type": "veggie",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/pineapple.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/pineapple.png"
+    },
+    {
+      "name": "Plant-Based Pepperoni",
+      "description": "Vegan pepperoni alternative",
+      "price": 2.5,
+      "type": "topping",
+      "sub_type": "veggie",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/plant_based_pepperoni.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/plant_based_pepperoni.png"
+    },
+    {
+      "name": "Red Onions",
+      "description": "Fresh sliced red onions",
+      "price": 1.5,
+      "type": "topping",
+      "sub_type": "veggie",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/red_onions.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/red_onions.png"
+    },
+    {
+      "name": "Roasted Garlic",
+      "description": "Roasted garlic cloves",
+      "price": 1.75,
+      "type": "topping",
+      "sub_type": "veggie",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/roasted_garlic.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/roasted_garlic.png"
+    },
+    {
+      "name": "Roasted Red Peppers",
+      "description": "Roasted red bell peppers",
+      "price": 1.75,
+      "type": "topping",
+      "sub_type": "veggie",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/roasted_red_peppers.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/roasted_red_peppers.png"
+    },
+    {
+      "name": "Roma Tomatoes",
+      "description": "Fresh roma tomato slices",
+      "price": 1.5,
+      "type": "topping",
+      "sub_type": "veggie",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/roma_tomatoes.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/roma_tomatoes.png"
+    },
+    {
+      "name": "Sliced Pickles",
+      "description": "Tangy sliced pickles",
+      "price": 1.5,
+      "type": "topping",
+      "sub_type": "veggie",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/sliced_pickles.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/sliced_pickles.png"
+    },
+    {
+      "name": "Spinach",
+      "description": "Fresh baby spinach",
+      "price": 1.5,
+      "type": "topping",
+      "sub_type": "veggie",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/spinach.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/spinach.png"
+    },
+    {
+      "name": "Sun-Dried Tomatoes",
+      "description": "Flavorful sun-dried tomatoes",
+      "price": 1.75,
+      "type": "topping",
+      "sub_type": "veggie",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/sun_dried_tomatoes.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/veggie/sun_dried_tomatoes.png"
+    },
+    {
+      "name": "Blue Cheese",
+      "description": "Creamy blue cheese with bold flavor",
+      "price": 2.0,
+      "type": "cheese",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/cheese/blue_cheese.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/cheese/blue_cheese.png"
+    },
+    {
+      "name": "Cheddar",
+      "description": "Aged sharp cheddar cheese",
+      "price": 1.5,
+      "type": "cheese",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/cheese/chedda.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/piece/cheese/chedda.png"
+    },
+    {
+      "name": "Gouda",
+      "description": "Smooth and creamy gouda cheese",
+      "price": 1.75,
+      "type": "cheese",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/cheese/gouda.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/cheese/gouda.png"
+    },
+    {
+      "name": "Mozzarella",
+      "description": "Fresh mozzarella cheese",
+      "price": 1.5,
+      "type": "cheese",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/cheese/mozazella.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/piece/cheese/mozazella.png"
+    },
+    {
+      "name": "Parmesan",
+      "description": "Grated parmesan cheese",
+      "price": 1.75,
+      "type": "cheese",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/cheese/parmesan.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/cheese/parmesan.png"
+    },
+    {
+      "name": "Provolone",
+      "description": "Semi-hard provolone cheese",
+      "price": 1.75,
+      "type": "cheese",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/cheese/provolone.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/cheese/provolone.png"
+    },
+    {
+      "name": "Ricotta",
+      "description": "Creamy ricotta cheese",
+      "price": 2.0,
+      "type": "cheese",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/cheese/ricotta.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/topping/cheese/ricotta.png"
+    },
+    {
+      "name": "BBQ",
+      "description": "Smoky BBQ sauce",
+      "price": 0.5,
+      "type": "sauce",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/sauce/bbq.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/sauce/bbq.png"
+    },
+    {
+      "name": "Buffalo",
+      "description": "Spicy buffalo sauce",
+      "price": 0.5,
+      "type": "sauce",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/sauce/buffalo.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/sauce/buffalo.png"
+    },
+    {
+      "name": "Butter Chicken",
+      "description": "Creamy butter chicken sauce",
+      "price": 0.75,
+      "type": "sauce",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/sauce/butter_chicken.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/sauce/butter_chicken.png"
+    },
+    {
+      "name": "Creamy Garlic",
+      "description": "Rich creamy garlic sauce",
+      "price": 0.75,
+      "type": "sauce",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/sauce/creamy_garlic.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/sauce/creamy_garlic.png"
+    },
+    {
+      "name": "Hot Honey",
+      "description": "Spicy hot honey sauce",
+      "price": 0.75,
+      "type": "sauce",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/sauce/hot_honey.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/sauce/hot_honey.png"
+    },
+    {
+      "name": "Pesto",
+      "description": "Fresh basil pesto sauce",
+      "price": 1.0,
+      "type": "sauce",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/sauce/pesto.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/sauce/pesto.png"
+    },
+    {
+      "name": "Tomato",
+      "description": "Classic tomato pizza sauce",
+      "price": 0.5,
+      "type": "sauce",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/sauce/tomato.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/sauce/tomato.png"
+    },
+    {
+      "name": "Cheese Stuffed Crust",
+      "description": "Crust filled with melted cheese",
+      "price": 2.5,
+      "type": "dough",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/dough/cheese_stuffed_crust.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/dough/cheese_stuffed_crust.png"
+    },
+    {
+      "name": "Classic Stuffed Crust",
+      "description": "Classic stuffed crust dough",
+      "price": 2.0,
+      "type": "dough",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/dough/classic_stuffed_crust.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/dough/classic_stuffed_crust.png"
+    },
+    {
+      "name": "Regular Dough",
+      "description": "Standard regular pizza dough",
+      "price": 1.5,
+      "type": "dough",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/dough/regular_dough.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/dough/regular_dough.png"
+    },
+    {
+      "name": "Thick Crust",
+      "description": "Thick and fluffy pizza crust",
+      "price": 2.0,
+      "type": "dough",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/dough/thick_crust.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/dough/thick_crust.png"
+    },
+    {
+      "name": "Thin Crust",
+      "description": "Crispy thin pizza crust",
+      "price": 1.5,
+      "type": "dough",
+      "is_active": true,
+      "image_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/dough/thin_crust.png",
+      "piece_file": "/home/cao-le/Web Projects/pizza_admin_web/backend/backend_dj/assets/images/dough/thin_crust.png"
+    }
+  ]
+}

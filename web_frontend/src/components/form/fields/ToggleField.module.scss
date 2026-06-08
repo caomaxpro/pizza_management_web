@@ -1,0 +1,74 @@
+.toggleContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.toggleGroup {
+    display: inline-flex;
+    gap: 2px;
+    background-color: #f0f0f0;
+    padding: 4px;
+    border-radius: 6px;
+    width: fit-content;
+
+    &.size-sm {
+        gap: 1px;
+        padding: 2px;
+    }
+
+    &.size-lg {
+        gap: 4px;
+        padding: 6px;
+    }
+}
+
+.toggleButton {
+    padding: 8px 16px;
+    border: none;
+    background-color: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+
+    &:hover:not(:disabled) {
+        background-color: rgba(139, 92, 246, 0.1);
+        color: #333;
+    }
+
+    &.active {
+        background-color: #8b5cf6;
+        color: white;
+        box-shadow: 0 2px 4px rgba(139, 92, 246, 0.3);
+    }
+
+    &:active:not(:disabled):not(.active) {
+        background-color: rgba(139, 92, 246, 0.05);
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    // Size variants
+    .size-sm & {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .size-lg & {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+}

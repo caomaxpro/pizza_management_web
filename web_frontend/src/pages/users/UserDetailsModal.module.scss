@@ -1,0 +1,167 @@
+@use '../../styles/variables' as vars;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$space-6;
+    padding: vars.$space-4;
+    max-height: 70vh;
+    overflow-y: auto;
+    @include vars.scrollbar;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$space-4;
+}
+
+.sectionTitle {
+    font-size: vars.$text-lg;
+    font-weight: vars.$weight-semibold;
+    color: vars.$text;
+    margin: 0;
+    padding-bottom: vars.$space-3;
+    border-bottom: 1px solid vars.$border;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: vars.$space-4;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$space-2;
+}
+
+.label {
+    font-size: vars.$text-sm;
+    font-weight: vars.$weight-medium;
+    color: vars.$text-secondary;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.value {
+    font-size: vars.$text-base;
+    color: vars.$text;
+    font-weight: vars.$weight-normal;
+    word-break: break-word;
+}
+
+// === Role Badge ===
+
+.roleBadge {
+    display: inline-block;
+    padding: vars.$space-1 vars.$space-3;
+    border-radius: vars.$radius-full;
+    font-size: vars.$text-xs;
+    font-weight: vars.$weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    width: fit-content;
+}
+
+.roleBadgeAdmin {
+    background: rgba(239, 68, 68, 0.15);
+    color: #dc2626;
+}
+
+.roleBadgeManager {
+    background: rgba(245, 158, 11, 0.15);
+    color: #d97706;
+}
+
+.roleBadgeStaff {
+    background: rgba(59, 130, 246, 0.15);
+    color: #2563eb;
+}
+
+.roleBadgeUser {
+    background: rgba(107, 114, 128, 0.15);
+    color: #4b5563;
+}
+
+// === Status Badge ===
+
+.statusBadge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: vars.$space-1 vars.$space-3;
+    border-radius: vars.$radius-full;
+    font-size: vars.$text-xs;
+    font-weight: vars.$weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    width: fit-content;
+}
+
+.statusActive {
+    background: rgba(16, 185, 129, 0.15);
+    color: #059669;
+
+    &::before {
+        content: "●";
+        margin-right: vars.$space-1;
+        font-size: vars.$text-xs;
+    }
+}
+
+.statusInactive {
+    background: rgba(107, 114, 128, 0.15);
+    color: #4b5563;
+
+    &::before {
+        content: "●";
+        margin-right: vars.$space-1;
+        font-size: vars.$text-xs;
+    }
+}
+
+// === Task Permissions ===
+
+.taskPerms {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$space-3;
+    padding: vars.$space-4;
+    background: vars.$bg-light;
+    border-radius: vars.$radius-md;
+}
+
+.permsList {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$space-2;
+}
+
+.permItem {
+    display: flex;
+    align-items: center;
+    gap: vars.$space-2;
+
+    input[type="checkbox"] {
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+
+    label {
+        font-size: vars.$text-sm;
+        color: vars.$text;
+        cursor: default;
+    }
+}
+
+// === Actions ===
+
+.actions {
+    display: flex;
+    gap: vars.$space-3;
+    justify-content: flex-end;
+    padding-top: vars.$space-4;
+    border-top: 1px solid vars.$border;
+}

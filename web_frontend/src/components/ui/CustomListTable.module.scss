@@ -1,0 +1,98 @@
+@use '../../styles/variables' as vars;
+
+.tableWrapper {
+    background: white;
+    border-radius: vars.$space-2;
+    overflow-x: auto;
+    margin-bottom: vars.$space-4;
+    @include vars.card;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+        background: vars.$bg-light;
+        border-bottom: 2px solid vars.$border-light;
+
+        th {
+            padding: vars.$space-3 vars.$space-4;
+            text-align: left;
+            font-weight: 600;
+            color: vars.$text-primary;
+            font-size: vars.$text-sm;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid vars.$border-light;
+            transition: background vars.$transition-base;
+            background: white;
+
+            &:nth-child(even) {
+                background: #f8f9fa;
+            }
+
+            &:hover {
+                background: rgba(vars.$primary, 0.04);
+            }
+
+            td {
+                padding: vars.$space-3 vars.$space-4;
+                font-size: vars.$text-sm;
+                color: vars.$text-primary;
+
+                &:last-child {
+                    text-align: right;
+                }
+            }
+        }
+    }
+}
+
+.checkboxCol {
+    width: 50px;
+    text-align: center;
+    display: "flex";
+
+    input[type="checkbox"] {
+        cursor: pointer;
+        accent-color: vars.$primary;
+        width: 18px;
+        height: 18px;
+    }
+}
+
+.sortableHeader {
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease;
+    /* Remove display:flex so header content is inline */
+    &:hover {
+        background-color: #efefef;
+    }
+}
+
+.sortIcon {
+    display: inline-flex;
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 500;
+    margin-left: 4px;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.actionsCol {
+    width: 100px;
+}
+
+.empty {
+    text-align: center;
+    padding: vars.$space-4;
+    color: vars.$text-secondary;
+}

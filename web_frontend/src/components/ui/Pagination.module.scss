@@ -1,0 +1,111 @@
+@use "../../styles/variables" as *;
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: $space-3;
+    padding: $space-4 $space-5;
+    background: $surface;
+    border: 1px solid $border;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-sm;
+    margin-top: 10px;
+}
+
+// ── Left section ────────────────────────────────────────────────
+.info {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+}
+
+.countText {
+    font-size: $text-sm;
+    color: $text-secondary;
+    white-space: nowrap;
+}
+
+.pageSizeSelect {
+    font-size: $text-sm;
+    color: $text;
+    background: $surface;
+    border: 1px solid $border;
+    border-radius: $radius-md;
+    padding: $space-1 $space-3;
+    cursor: pointer;
+    transition: border-color $transition-fast;
+
+    &:focus {
+        outline: none;
+        border-color: $primary;
+    }
+}
+
+// ── Right section ────────────────────────────────────────────────
+.controls {
+    display: flex;
+    align-items: center;
+    gap: $space-1;
+}
+
+%btn-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $text-sm;
+    font-weight: $weight-medium;
+    border-radius: $radius-md;
+    cursor: pointer;
+    transition: background $transition-fast, border-color $transition-fast,
+        color $transition-fast;
+    border: 1px solid $border;
+    background: $surface;
+    color: $text;
+
+    &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+
+    &:not(:disabled):hover {
+        border-color: $primary;
+        color: $primary;
+    }
+}
+
+.navBtn {
+    @extend %btn-base;
+    padding: $space-2 $space-4;
+    white-space: nowrap;
+}
+
+.pageBtn {
+    @extend %btn-base;
+    width: 36px;
+    height: 36px;
+
+    &.active {
+        background: $primary;
+        border-color: $primary;
+        color: #fff;
+        font-weight: $weight-semibold;
+
+        &:hover {
+            background: $primary-dark;
+            border-color: $primary-dark;
+            color: #fff;
+        }
+    }
+}
+
+.ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    color: $text-secondary;
+    font-size: $text-sm;
+    user-select: none;
+}

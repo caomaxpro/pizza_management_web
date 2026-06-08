@@ -1,0 +1,308 @@
+@use './variables' as vars;
+@use 'sass:color';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  --radius-md: 8px;
+  --transition-base: 100ms ease-in-out;
+}
+
+body {
+  background-color: vars.$background;
+  color: vars.$text;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-size: vars.$text-base;
+  font-weight: vars.$weight-normal;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === PAGE SCROLLBAR STYLING === */
+html {
+  @include vars.scrollbar;
+}
+
+a {
+  color: vars.$primary;
+  text-decoration: none;
+  transition: color vars.$transition-fast;
+
+  &:hover {
+    color: color.adjust(vars.$primary, $lightness: -10%);
+  }
+}
+
+button {
+  font-family: inherit;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+/* === UTILITY CLASSES === */
+
+.container {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.wrapper {
+  padding: vars.$space-4;
+
+  @media (min-width: vars.$bp-md) {
+    padding: vars.$space-6;
+  }
+
+  @media (min-width: vars.$bp-lg) {
+    padding: vars.$space-8;
+  }
+}
+
+.flex {
+  display: flex;
+
+  &-center {
+    @include vars.flex-center;
+  }
+
+  &-between {
+    @include vars.flex-between;
+  }
+
+  &-col {
+    flex-direction: column;
+  }
+
+  &-wrap {
+    flex-wrap: wrap;
+  }
+
+  &-gap-2 {
+    gap: vars.$space-2;
+  }
+
+  &-gap-4 {
+    gap: vars.$space-4;
+  }
+
+  &-gap-6 {
+    gap: vars.$space-6;
+  }
+}
+
+.grid {
+  display: grid;
+  gap: vars.$space-4;
+
+  &-2 {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  &-3 {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  &-4 {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+.text {
+  &-center {
+    text-align: center;
+  }
+
+  &-left {
+    text-align: left;
+  }
+
+  &-right {
+    text-align: right;
+  }
+
+  &-muted {
+    color: vars.$text-secondary;
+  }
+
+  &-primary {
+    color: vars.$primary;
+  }
+
+  &-xs {
+    font-size: vars.$text-xs;
+  }
+
+  &-sm {
+    font-size: vars.$text-sm;
+  }
+
+  &-lg {
+    font-size: vars.$text-lg;
+  }
+
+  &-bold {
+    font-weight: vars.$weight-bold;
+  }
+
+  &-semibold {
+    font-weight: vars.$weight-semibold;
+  }
+}
+
+.p {
+  &-0 {
+    padding: vars.$space-0;
+  }
+  &-2 {
+    padding: vars.$space-2;
+  }
+  &-4 {
+    padding: vars.$space-4;
+  }
+  &-6 {
+    padding: vars.$space-6;
+  }
+  &-8 {
+    padding: vars.$space-8;
+  }
+}
+
+.m {
+  &-0 {
+    margin: vars.$space-0;
+  }
+  &-2 {
+    margin: vars.$space-2;
+  }
+  &-4 {
+    margin: vars.$space-4;
+  }
+  &-6 {
+    margin: vars.$space-6;
+  }
+  &-8 {
+    margin: vars.$space-8;
+  }
+}
+
+.gap {
+  &-2 {
+    gap: vars.$space-2;
+  }
+  &-4 {
+    gap: vars.$space-4;
+  }
+  &-6 {
+    gap: vars.$space-6;
+  }
+}
+
+.rounded {
+  border-radius: vars.$radius-md;
+
+  &-lg {
+    border-radius: vars.$radius-lg;
+  }
+
+  &-full {
+    border-radius: vars.$radius-full;
+  }
+}
+
+.shadow {
+  box-shadow: vars.$shadow;
+
+  &-md {
+    box-shadow: vars.$shadow-md;
+  }
+
+  &-lg {
+    box-shadow: vars.$shadow-lg;
+  }
+}
+
+.bg {
+  &-primary {
+    background-color: vars.$primary;
+    color: white;
+  }
+
+  &-secondary {
+    background-color: vars.$secondary;
+    color: white;
+  }
+
+  &-success {
+    background-color: vars.$success;
+    color: white;
+  }
+
+  &-error {
+    background-color: vars.$error;
+    color: white;
+  }
+
+  &-light {
+    background-color: vars.$gray-lightest;
+  }
+
+  &-surface {
+    background-color: vars.$surface;
+  }
+}
+
+.border {
+  border: 1px solid vars.$border;
+
+  &-top {
+    border-top: 1px solid vars.$border;
+  }
+
+  &-bottom {
+    border-bottom: 1px solid vars.$border;
+  }
+
+  &-primary {
+    border-color: vars.$primary;
+  }
+}
+
+.opacity {
+  &-50 {
+    opacity: 0.5;
+  }
+  &-75 {
+    opacity: 0.75;
+  }
+}
+
+.hidden {
+  display: none;
+
+  @media (min-width: vars.$bp-md) {
+    display: initial;
+  }
+}
+
+.hidden-md {
+  @media (min-width: vars.$bp-md) {
+    display: none;
+  }
+}

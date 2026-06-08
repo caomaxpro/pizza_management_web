@@ -1,0 +1,31 @@
+@use '../../styles/variables' as vars;
+
+.form {
+  background: white;
+  border-radius: vars.$space-2;
+  border: 1px solid vars.$border-light;
+  padding: vars.$space-6;
+  max-width: 400px;
+  margin: 0 auto;
+  @include vars.card;
+}
+
+.title {
+  font-size: vars.$text-lg;
+  font-weight: 600;
+  color: vars.$text-primary;
+  margin-bottom: vars.$space-4;
+}
+
+.formGroup {
+  margin-bottom: vars.$space-4;
+  display: flex;
+  flex-direction: column;
+  gap: vars.$space-2;
+}
+
+.actions {
+  display: flex;
+  gap: vars.$space-3;
+  justify-content: flex-end;
+}

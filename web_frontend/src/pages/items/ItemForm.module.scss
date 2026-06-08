@@ -1,0 +1,116 @@
+@use "../../styles/variables" as *;
+
+.textarea {
+    width: 100%;
+    padding: 0.7rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 80px;
+    &:focus {
+        outline: none;
+        border-color: #ff9800;
+        box-shadow: 0 0 0 4px rgba(255, 152, 0, 0.08);
+    }
+}
+// Item Form Styles
+
+.formContainer {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 2.5rem 2.5rem 2rem 2.5rem;
+    width: 800px;
+    margin: 0 auto;
+}
+
+.section {
+    margin-bottom: 2rem;
+}
+
+.sectionTitle {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.imageUploadRow {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.imageBox {
+    flex: 1;
+    border: 2px dashed #bdbdbd;
+    border-radius: 8px;
+    padding: 1.5rem 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    background: #fafbfc;
+    transition: border-color 0.2s;
+}
+.imageBox:hover {
+    border-color: #ff9800;
+}
+.imageIcon {
+    font-size: 2.5rem;
+    color: #bdbdbd;
+    margin-bottom: 0.5rem;
+}
+.imageLabel {
+    font-size: 1rem;
+    color: #888;
+    margin-bottom: 0.2rem;
+}
+.imageHint {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.formGroup {
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+}
+.formGroup label {
+    // font-size: 0.98rem;
+    // margin-bottom: 0.4rem;
+    color: #444;
+}
+
+.row {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.statusRow {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.statusLabel {
+    font-size: 1rem;
+    color: #444;
+}
+
+.statusHint {
+    font-size: 0.95rem;
+    color: #888;
+    margin-left: 0.5rem;
+}

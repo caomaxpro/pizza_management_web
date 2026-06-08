@@ -1,0 +1,246 @@
+@use '../../styles/variables' as vars;
+
+.header {
+  @include vars.flex-between;
+  width: 100vw;
+  min-width: 100vw;
+  max-width: 100vw;
+  height: vars.$header-height;
+  background: vars.$surface;
+  border-bottom: 1px solid vars.$border;
+  padding: 0 vars.$space-6;
+  box-shadow: vars.$shadow;
+  left: 0;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.logo {
+  @include vars.flex-center;
+  gap: vars.$space-2;
+  font-size: vars.$text-xl;
+  font-weight: vars.$weight-bold;
+  color: vars.$text;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity vars.$transition-fast;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  .emoji {
+    font-size: vars.$text-2xl;
+  }
+
+  .text {
+    background: vars.$gradient-primary;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+.nav {
+  @include vars.flex-between;
+  flex: 1;
+  margin: 0 vars.$space-8;
+  margin-left: auto;
+  gap: vars.$space-8;
+}
+
+.navItems {
+  @include vars.flex-between;
+  gap: vars.$space-8;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navItem {
+  position: relative;
+
+  a {
+    color: vars.$text-secondary;
+    text-decoration: none;
+    font-size: vars.$text-sm;
+    font-weight: vars.$weight-medium;
+    transition: color vars.$transition-fast;
+    padding: vars.$space-2 0;
+
+    &:hover {
+      color: vars.$primary;
+    }
+
+    &.active {
+      color: vars.$primary;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: vars.$primary;
+      }
+    }
+  }
+}
+
+.userSection {
+  @include vars.flex-center;
+  gap: vars.$space-4;
+}
+
+.userBadge {
+  @include vars.flex-center;
+  gap: vars.$space-2;
+  padding: vars.$space-2 vars.$space-3;
+  background: rgba(vars.$primary, 0.1);
+  border-radius: vars.$radius-full;
+  font-size: vars.$text-xs;
+  font-weight: vars.$weight-medium;
+  color: vars.$primary;
+}
+
+.userMenu {
+  position: relative;
+}
+
+.menuButton {
+  @include vars.flex-center;
+  gap: vars.$space-2;
+  background: none;
+  border: none;
+  padding: vars.$space-2 vars.$space-3;
+  cursor: pointer;
+  color: vars.$text;
+  border-radius: vars.$radius-md;
+  transition: background-color vars.$transition-fast;
+
+  &:hover {
+    background-color: vars.$gray-lightest;
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: vars.$radius-full;
+    background: vars.$gradient-primary;
+    @include vars.flex-center;
+    color: white;
+    font-weight: vars.$weight-bold;
+    font-size: vars.$text-sm;
+  }
+
+  .userInfo {
+    text-align: left;
+
+    .name {
+      font-size: vars.$text-sm;
+      font-weight: vars.$weight-semibold;
+      color: vars.$text;
+      margin: 0;
+    }
+
+    .role {
+      font-size: vars.$text-xs;
+      color: vars.$text-secondary;
+      margin: 0;
+    }
+  }
+
+  .dropdownIcon {
+    font-size: vars.$text-sm;
+    transition: transform vars.$transition-fast;
+
+    &.open {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: vars.$space-2;
+  background: vars.$surface;
+  border: 1px solid vars.$border;
+  border-radius: vars.$radius-md;
+  box-shadow: vars.$shadow-lg;
+  min-width: 200px;
+  z-index: 1000;
+  overflow: hidden;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.dropdownMenu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdownItem {
+  &:not(:last-child) {
+    border-bottom: 1px solid vars.$border;
+  }
+
+  a,
+  button {
+    display: block;
+    width: 100%;
+    padding: vars.$space-3;
+    text-align: left;
+    background: none;
+    border: none;
+    color: vars.$text;
+    cursor: pointer;
+    font-size: vars.$text-sm;
+    transition: background-color vars.$transition-fast;
+
+    &:hover {
+      background-color: vars.$gray-lightest;
+      color: vars.$primary;
+    }
+  }
+}
+
+.mobileMenuButton {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: vars.$text;
+  font-size: vars.$text-xl;
+  padding: vars.$space-2;
+
+  @media (max-width: vars.$bp-md) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media (max-width: vars.$bp-md) {
+  .header {
+    padding: 0 vars.$space-4;
+  }
+
+  .logo {
+    .text {
+      display: none;
+    }
+  }
+
+  .nav {
+    margin: 0;
+  }
+
+  .navItems {
+    display: none;
+  }
+}
