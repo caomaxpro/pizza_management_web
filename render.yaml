@@ -1,23 +1,4 @@
 services:
-  - type: static_site
-    name: pizza-admin-frontend
-    buildCommand: |
-      cd web_frontend && npm install && npm run build
-    staticPublishPath: web_frontend/dist
-    routes:
-      - path: /
-        destination: /index.html
-      - path: /assets
-        destination: /assets
-    envVars:
-  - key: VITE_API_URL
-    scope: build
-    value: ${web.url}/api
-  - key: VITE_API_DOMAIN
-    scope: build
-    value: ${web.url}
-    pullRequestPreviewsEnabled: true
-
   - type: web_service
     name: pizza-admin-backend
     runtime: python-3.11
