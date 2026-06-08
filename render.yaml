@@ -10,12 +10,12 @@ services:
       - path: /assets
         destination: /assets
     envVars:
-      - key: VITE_API_URL
-          scope: build
-          value: ${web.url}/api
-      - key: VITE_API_DOMAIN
-          scope: build
-          value: ${web.url}
+  - key: VITE_API_URL
+    scope: build
+    value: ${web.url}/api
+  - key: VITE_API_DOMAIN
+    scope: build
+    value: ${web.url}
     pullRequestPreviewsEnabled: true
 
   - type: web_service
