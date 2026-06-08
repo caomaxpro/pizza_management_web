@@ -1,7 +1,8 @@
 services:
-  - type: service
+  - type: web
     name: pizza-admin-backend
-    env: python
+    runtime: python-3.11
+    region: oregon
     plan: standard
     buildCommand: |
       pip install -r backend/requirements.txt && \
@@ -39,7 +40,7 @@ services:
       - key: REDIS_URL
         fromService:
           name: pizza-admin-redis
-          type: pserv
+          type: keyvalue
           property: connectionString
       - key: SECRET_KEY
         generateValue: true
@@ -47,9 +48,10 @@ services:
         value: /etc/secrets/firebase_config.json
     healthCheckPath: /api/health/
 
-  - type: service
+  - type: worker
     name: pizza-admin-worker
-    env: python
+    runtime: python-3.11
+    region: oregon
     plan: standard
     buildCommand: |
       pip install -r backend/requirements.txt
@@ -68,25 +70,27 @@ services:
       - key: REDIS_URL
         fromService:
           name: pizza-admin-redis
-          type: pserv
+          type: keyvalue
           property: connectionString
       - key: SECRET_KEY
         generateValue: true
       - key: FIREBASE_CONFIG_PATH
         value: /etc/secrets/firebase_config.json
 
+  - type: keyvalue
+    name: pizza-admin-redis
+    region: oregon
+    plan: free
+    maxmemoryPolicy: noeviction
+    ipAllowList:
+      - source: 0.0.0.0/0
+        description: everywhere
+
 databases:
   - name: pizza-admin-db
     engine: postgres
-    version: 15
+    version: "15"
+    region: oregon
     plan: free
     databaseName: pizza_admin
-    databaseUser: postgres
-
-caches:
-  - name: pizza-admin-redis
-    engine: redis
-    version: 7
-    plan: free
-    ipAllowList: []
-    maxmemoryPolicy: noeviction
+    user: postgres
