@@ -1,7 +1,7 @@
 services:
   - type: web
     name: pizza-admin-backend
-    runtime: python-3.11
+    runtime: python
     region: oregon
     plan: standard
     buildCommand: |
@@ -50,7 +50,7 @@ services:
 
   - type: worker
     name: pizza-admin-worker
-    runtime: python-3.11
+    runtime: python
     region: oregon
     plan: standard
     buildCommand: |
@@ -92,4 +92,3 @@ databases:
     region: oregon
     plan: free
     databaseName: pizza_admin
-    user: postgres
